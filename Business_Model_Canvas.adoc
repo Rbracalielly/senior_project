@@ -2,13 +2,13 @@
 
 
 ## What is this document?
-This is a living document giving a high-level view of the business model canvas for the Spring 2020 CMPS 420 group. As the project changes and adapts over time so will this document. All members of the team are encouraged to keep this document up to date and provide feedback over the course of the project. 
+This is a living document giving a high-level view of the business model canvas for the Spring 2020 CMPS 420 group. As the project changes and adapts over time so will this document. All members of the team are encouraged to keep this document up to date and provide feedback over the course of the project.
 
 
-## Customer Segments 
+## Customer Segments
 Users {nbsp} +
 - People who want to monitor their calorie intake {nbsp} +
-- People looking to find new take on a diet app {nbsp} +
+- People looking to find new take on a diet website {nbsp} +
 - People seeking to learn healthy eating habits {nbsp} +
 
 Advertisers {nbsp} +
@@ -22,13 +22,13 @@ Users {nbsp} +
 - Best way to track your calorie intake {nbsp} +
 {nbsp} +
 Advertisers {nbsp} +
-- Reach possible consumers via in app adds
+- Reach possible consumers via website ads
 
 ## Channels
 Website {nbsp} +
 - {nbsp} +
 {nbsp} +
-Mobile App {nbsp} +
+Mobile Website {nbsp} +
 - {nbsp} +
 
 ## Customer Relationships
@@ -40,38 +40,35 @@ Social Media {nbsp} +
 - Facebook {nbsp} +
 
 ## Customer Relationships
-Adds {nbsp} +
-- In app adds {nbsp} +
-- website adds {nbsp} +
+Ads {nbsp} +
+- website ads {nbsp} +
 {nbsp} +
 Membership Fee {nbsp} +
-- Premium fee to remove in app adds {nbsp} +
+- Premium fee to remove website ads {nbsp} +
 
-## Key Resources 
+## Key Resources
 Technology {nbsp} +
 - Github {nbsp} +
 - Slack {nbsp} +
 
-## Key Partners 
+## Key Partners
 Development Team {nbsp} +
 - CMPS 480 Senior Project Members {nbsp} +
 {nbsp} +
-Advisors {nbsp} + 
+Advisors {nbsp} +
 - Mark Voortman
 
-## Key Activities 
+## Key Activities
 Works in Progress
 - Creating a working website
-- Creating a working application 
+- Creating a working mobile website
 - Creating a database with calorie information
 
 
 ## Cost
 Technical {nbsp} +
 - Development {nbsp} +
-- Application maintenance {nbsp} +
 - Website maintenance {nbsp} +
 
 ## Document History
 - Ryan Bracalielly created version 1.0 3/5/2020 at 11:49 PM EST
-
