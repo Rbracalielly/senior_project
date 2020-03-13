@@ -31,7 +31,7 @@ i.	Request uses Security Controller
 c.	API uses ODBC connection to MySQL Database to read database password
 i.	API verifies stored password
 
-##Successful Login Sequence: 
+## Successful Login Sequence: 
 1.	Password is verified by security controller 
 a.	API outputs success
 b.	Success is passed from Security Controller to Sign in Controller
@@ -43,7 +43,7 @@ i.	Content of the user’s page and profile information
 b.	Forwards user to account page (Sample URL: Https//www. caloriedefici calculator.com/rbracalielly)
 4.	User’s workstation or mobile devices loads account page (Sample URL: Https//www. caloriedefici calculator.com/rbracalielly)
 
-##Failed Login Sequence
+## Failed Login Sequence
 1.	Password is verified by security controller 
 a.	API outputs failure
 b.	failure is passed from Security Controller to Sign in Controller
