@@ -1,0 +1,61 @@
+# *Use Case*
+
+
+## What Is This Document?
+This document details out various use case example for the team’s web application focused on calorie deficit tracking  
+
+## _Use Case 1 "Login"_
+
+## _Initial Sequence:_ 
+1.	A visitor visits a website, and goes to the “login” page 
+a.	User types application URL (Sample URL: Https//www. caloriedefici calculator.com)
+i.	Https request to web application 
+ii.	Web application responds to request 
+iii.	Web application Delivers stating content and single page application 
+b.	User Click Login Button
+i.	Button click calls application URL login page (Sample URL: Https//www. caloriedefici calculator.com/login)
+ii.	Https request to web application 
+iii.	Web application responds to request 
+iv.	Web application Delivers stating content and single page application 
+2.	The Visitor enters in a username and password, and submits the form to the Server 
+a.	User inputs username
+i.	Username example: rbracalielly
+b.	User inputs password
+i.	Password example: HO$8'N],12c9eOy
+c.	User submits request to web server
+3.	Web server submits user input to web application
+a.	Web Server request submitted to singe page application
+i.	Request submitted to application API
+b.	API call JSON/HTTP call to Sign in Controller 
+i.	Request uses Security Controller  
+c.	API uses ODBC connection to MySQL Database to read database password
+i.	API verifies stored password
+
+## _Successful Login Sequence:_ 
+1.	Password is verified by security controller 
+a.	API outputs success
+b.	Success is passed from Security Controller to Sign in Controller
+c.	Sign in Controller passes success to Single Page Application
+2.	Single page application sends web server instructions to log in user
+3.	Web server process request
+a.	Loads user content
+i.	Content of the user’s page and profile information
+b.	Forwards user to account page (Sample URL: Https//www. caloriedefici calculator.com/rbracalielly)
+4.	User’s workstation or mobile devices loads account page (Sample URL: Https//www. caloriedefici calculator.com/rbracalielly)
+
+## _Failed Login Sequence_
+1.	Password is verified by security controller 
+a.	API outputs failure
+b.	failure is passed from Security Controller to Sign in Controller
+c.	Sign in Controller passes failure to Single Page Application
+2.	Single page application sends web server instructions to of failed login
+3.	Web server process request
+a.	Loads content
+i.	Content for reset password/failed login page
+b.	Forwards user to failed login page (Sample URL: Https//www. caloriedefici calculator.com/restpassword)
+4.	User’s workstation or mobile devices loads account page (Sample URL: Https//www. caloriedefici calculator.com/restpassword)
+This document details out various use case example for the team’s web application focused on calorie deficit tracking  
+
+## Document History
+- Ryan Bracalielly created version 1.0 3/13/2020 at 1:27 AM EST
+
