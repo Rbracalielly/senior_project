@@ -4,7 +4,7 @@
 ## What is this document?
 This document details out various use case example for the team’s web application focused on calorie deficit tracking  
 
-## User Case 1 Logigin in
+## User Case 1 "Login"
 
 ## Initial Sequence: 
 1.	A visitor visits a website, and goes to the “login” page 
