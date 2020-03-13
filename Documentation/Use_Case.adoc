@@ -1,10 +1,10 @@
 # *Use Case*
 
 
-## What is this document?
+## What Is This Document?
 This document details out various use case example for the team’s web application focused on calorie deficit tracking  
 
-## Use Case 1 "Login"
+## _Use Case 1 "Login"_
 
 ## _Initial Sequence:_ 
 1.	A visitor visits a website, and goes to the “login” page 
