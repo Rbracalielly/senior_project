@@ -1,0 +1,33 @@
+# Security Document
+
+
+## What is this document?
+This document covers a high-level view of the calorie deficit application security. 
+
+## How will we make sure the system is secure and data safe? 
+- 
+
+## What data do we need to protect? 
+- Basic User: {nbsp} +
+  Full Name {nbsp} +
+  Age {nbsp} +
+  Address {nbsp} +
+  Gender {nbsp} +
+  {nbsp} +
+- Paymnet Information: {nbsp} +
+  Billed User Full Name {nbsp} +
+  Credit Card Information {nbsp} +
+  Billed Address {nbsp} +
+  {nbsp} +
+- Personal Health Information
+  User BMI {nbsp} +
+  User Fat Percentage {nbsp} +
+  User Weight {nbsp} +
+  
+## How will we protect the applications sensitive data?
+-
+
+## What specific technologies will we use to for protection?
+
+## Document History
+- Ryan Bracalielly created version 1.0 3/13/2020 at 11:49 PM EST
