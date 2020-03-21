@@ -1,0 +1,175 @@
+
+<html>
+<head>
+  <title>Calorie Calculator</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<style>
+
+.hide_show_create_account_information {
+  display: none;
+}
+
+</style>
+
+<script>
+  $("#signin_user_login").click(function() {
+    // get email and password
+    var email = document.getElementById("userEmail").value;
+    var password = document.getElementById("userPassword").value;
+    doLogin({ // this is the input (first argument of doLogin)
+      email: email,
+      password: password
+    }, function(err) { // this is the callback (second argument of doLogin)
+      // this function gets called after the ajax request completes
+      if (err) {
+        alert("Login failed " + err);
+      }
+      else {
+        alert("Login success!");
+        // ... and navigate to other page
+
+        location = 'https://www.caloriecalculator.com/user_profile'
+      }
+    });
+  });
+  function doLogin(input, callback) {
+    // for now, we simulate the ajax request and add 100ms delay
+    setTimeout(function() {
+      if (Math.random() < 0.1) {
+        // simulate failure 10% of the time
+        callback("Invalid username and/or password");
+      }
+      else {
+        // success 90% of the time
+        callback();
+      }
+    }, 100);
+  }
+</script>
+
+
+<script>
+
+	  //Function to Hide and Show the sign-up form.
+	  $(document).ready(function() {
+	  var Target = document.getElementById('show_create_account');
+
+		$("#user_account_creation").click(function() {
+		  Target.style.display = 'block';
+		});
+
+		$("#cancel_user_account_creation").click(function() {
+		  Target.style.display = 'none';
+		});
+
+
+		$("#cancel_user_login").click(function() {
+		  history.go(-1);
+		});
+
+	  });
+
+</script>
+
+
+<body>
+<!-- Create Table -->
+<table align=center>
+  <!-- Start -->
+  <tr>
+    <td>
+	  <form class="form-signin">
+		<img class="mb-4" src="https://i.postimg.cc/Z5cWLm0z/avatar-png-transparent-4.png" alt="" width="72" height="72">
+		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
+
+    <!-- Enter User Email -->
+		<label for="user_email" class="sr-only">Email address</label>
+		<input type="email" id="userEmail" class="form-control" placeholder="Email address" required autofocus>
+    <br>
+
+    <!-- Enter User Password -->
+    <label for="user_pasword" class="sr-only">Password</label>
+		<input type="password" id="userPassword" class="form-control" placeholder="Password" required>
+
+    <!-- User Remember Sign In Checkbox -->
+		<div class="checkbox mb-3">
+		  <label>
+		  <input type="checkbox" value="remember-me"> Stay Signed In
+		  </label>
+		</div>
+
+    <!-- User Sign In Or Canels Login -->
+		<button class="btn btn-lg btn-primary btn-block" type="submit" id="signin_user_login">Sign in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="reset" id="cancel_user_login">Cancel</button>
+
+	  </form>
+	  </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+	  <div>
+		<button id="user_account_creation">Create Account</button>
+	  </div>
+	 </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+	 <td>
+	  <div class="hide_show_create_account_information" id="show_create_account">
+		<table id="pmt_interest">
+    <tr>
+		<td>
+		<label for="email"><b>User Name</b></label>
+		<input type="text" placeholder="UserName" name="email" required>
+	 </td>
+  </tr>
+
+
+  <!-- Start -->
+	<tr>
+	  <td>
+		<label for="email"><b>Email</b></label>
+		<input type="text" placeholder="Enter Email" name="email" required>
+	  </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <label for="confirm"><b>Confirm Password</b></label>
+		<input type="password" placeholder="Confirm Password" name="confirm" required>
+		</td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <button type="submit" class="sign_up_user">Sign Up</button>
+		<button type="button" class="cancel_sign_up_user" id="cancel_user_account_creation">Cancel</button>
+		</td>
+	</tr>
+  <!-- End -->
+
+	</table>
+	</div>
+	</td>
+  </tr>
+<!-- End -->
+
+</table>
+<!-- Finish Table -->
+
+</body>
+</html>
