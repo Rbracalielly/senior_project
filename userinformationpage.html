@@ -1,0 +1,245 @@
+<html>
+<head>
+		<title>Calorie Calculator</title>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function(){
+    $(".calories").each(function() {
+      $(this).keyup(function(){
+    calculateCaloricSum();
+    });
+  });
+});
+
+  function calculateCaloricSum() {
+    var sum = 0;
+    $(".calories").each(function() {
+      if(!isNaN(this.value) && this.value.length!=0) {
+        sum += parseFloat(this.value);
+      }
+    });
+  $("#total_caloric_sum").html(sum.toFixed(0));
+}
+
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    $(".water").each(function() {
+      $(this).keyup(function(){
+    calculateOuncesSum();
+    });
+  });
+});
+
+  function calculateOuncesSum() {
+    var sum = 0;
+    $(".water").each(function() {
+      if(!isNaN(this.value) && this.value.length!=0) {
+        sum += parseFloat(this.value);
+      }
+    });
+  $("#total_ounces_sum").html(sum.toFixed(0));
+}
+
+</script>
+
+<body>
+<!--User Informaton-->
+<h3>User Infomation</h3>
+
+<!--User Current Weight-->
+  <div>
+	   <label>Age:</label>
+      <br>
+	      <span>
+					<input>
+				</span>
+	 </div>
+
+    <!--Gender Radio Buttons-->
+    <div>
+      <br>
+			<label>Gender:</label>
+        <br>
+          <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+          <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+          <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+		</div>
+
+      <!--User Current Weight-->
+		<div>
+      <br>
+				 <label>Current Weight (in pounds):</label>
+          <br>
+            <span>
+      			<input>
+      		  </span>
+			</div>
+
+
+      <!--User Height-->
+			<div>
+        <br>
+          <label>Height:</label>
+        <br>
+					<label>Feet</label>
+						<span>
+							<input>
+						</span>
+					<label>Inches</label>
+						<span>
+							<input>
+						</span>
+
+				</div>
+
+				<br>
+				<label>Exercise Level:</label>
+				<div class="custom-select" style="width:200px;">
+					<select>
+    				<option value="0">Select Level:</option>
+				    <option value="1">Light: Exercise 1-3 times/week</option>
+				    <option value="2">Moderate: Exercise 4-5 times/week</option>
+				    <option value="3">Active: Daily exercise or intens excercise 3-4 times/week</option>
+  			</select>
+			</div>
+
+        <!--Button to submit user data-->
+        <br>
+        <button type="button" id="user_information_button" onclick="">Submit User Information</button>
+
+<!--Caloric Intake-->
+<h3>Daily Caloric Intake</h3>
+
+<table width="300px" border="1">
+	<tr>
+		<td width="40px">Meal 1</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 2</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 3</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 4</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 5</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 6</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 7</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 8</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 9</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 10</td>
+		<td>Enter Calories</td>
+		<td><input class="calories" type="text" name="txt"/></td>
+	</tr>
+	<tr id="summation">
+		<td>All Meals</td>
+		<td>Total Calories</td>
+		<td align="center"><span id="total_caloric_sum">0</span></td>
+	</tr>
+</table>
+
+<!--Button to submit Caloric Intak-->
+<br>
+<button type="button" id="user_information_button" onclick="">Submit User Caloric Intake</button>
+
+<!--Hydration Level-->
+<h3>Daily Hydration Levels</h3>
+<table width="300px" border="1">
+	<tr>
+		<td width="40px">Glass 1</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 2</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 3</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 4</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 6</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 7</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 8</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 9</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 10</td>
+		<td>Enter Ounces</td>
+		<td><input class="water" type="text" name="txt"/></td>
+	</tr>
+	<tr id="summation">
+		<td>All Drinks</td>
+		<td>Total Ounces</td>
+		<td align="center"><span id="total_ounces_sum">0</span></td>
+	</tr>
+</table>
+
+<!--Button to submit Water Intake-->
+<br>
+<button type="button" id="user_information_button" onclick="">Submit User Water Intake</button>
+
+
+</body>
+</html>
