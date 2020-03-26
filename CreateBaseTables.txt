@@ -19,21 +19,14 @@ create table userInformation(
     `userCalorieGoal` nvarchar(255) NOT NULL,
     `userDietModDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
+
 create table userDailyCalorieIntake(
 	`userMealID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `userID` int( 11 ), 
-	`userMealCalories` float(7,4) NOT NULL,
-    `userMealDescription` float(7,4) NOT NULL,
-	`userMealEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`userMealMealOrDrinkCalories` float(7,4) NOT NULL,
+	`userDrinkOunces` float(7,4) default NULL,
+    `userMealOrDrinkDescription` float(7,4) NOT NULL,
+	`userMealOrDrinkEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
 	REFERENCES userInformation(user_ID)
 );
-create table userDailyHydrationIntake(
-	`userHydrationID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    `userID` int( 11 ), 
-	`userHydrationOunces` float(7,4) NOT NULL,
-    `userHydrationDescription` float(7,4) NOT NULL,
-    `userHydrationEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
-	REFERENCES userInformation(user_ID)
-    );
