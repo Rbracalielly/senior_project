@@ -1,37 +1,29 @@
-/*
 create table userInformation(
 	`userID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    `userName` nvarchar(30) NOT NULL,
-	`userEmail` nvarchar(30) NOT NULL,
-	`userPassword` nvarchar(30) NOT NULL,
-	`userSecretquestion` varchar(255) NOT NULL,
-	`userAnswer` nvarchar(50) NOT NULL,
-    `userStreetAddress` nvarchar(255) NOT NULL,
-	`userCity` nvarchar(50) NOT NULL,
+    `userName` varchar(30) NOT NULL,
+	`userEmail` varchar(50) NOT NULL,
+	`userPassword` varchar(30) NOT NULL,
+	`userSecretQuestion` varchar(255) NOT NULL,
+	`userAnswer` varchar(50) NOT NULL,
+    `userStreetAddress` varchar(255) NOT NULL,
+	`userCity` varchar(50) NOT NULL,
 	`userState` varchar(50) NOT NULL,
-    `userZip` int(5) NOT NULL
-);
-create table userDietInformation(
-	`userDeitID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    `userID` int( 11 ), 
-	`userDateOfBirth` DATE NOT NULL, 
+    `userZip` varchar(5) NOT NULL,
+    `userDateOfBirth` DATE NOT NULL, 
     `userGender` enum('M','F','O'), 
     `userBMI` float(7,4) NOT NULL, 
     `userWeight` float(7,4) NOT NULL, 
     `userHeight` float(7,4) NOT NULL, 
     `userExerciseLevel` nvarchar(255) NOT NULL,
 	`userCalorieLimit` float(7,4) NOT NULL,
-    `userCalorieGoal` float(7,4) NOT NULL,
+    `userCalorieGoal` nvarchar(255) NOT NULL,
     `userDietModDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
-	REFERENCES userInformation(user_ID)
-    );
+);
 create table userDailyCalorieIntake(
 	`userMealID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `userID` int( 11 ), 
 	`userMealCalories` float(7,4) NOT NULL,
-    `userMealDescription` varchar(255) NOT NULL,
-    `userMealDailyRollingTotal` float(7,4) NOT NULL,
+    `userMealDescription` float(7,4) NOT NULL,
 	`userMealEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
 	REFERENCES userInformation(user_ID)
@@ -40,10 +32,8 @@ create table userDailyHydrationIntake(
 	`userHydrationID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     `userID` int( 11 ), 
 	`userHydrationOunces` float(7,4) NOT NULL,
-    `userHydrationDescription` varchar(255) NOT NULL,
-    `userHydrationOuncesDailyRollingTotal` float(7,4) NOT NULL,
+    `userHydrationDescription` float(7,4) NOT NULL,
     `userHydrationEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
 	REFERENCES userInformation(user_ID)
     );
-*/
