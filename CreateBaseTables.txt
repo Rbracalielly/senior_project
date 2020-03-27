@@ -1,0 +1,32 @@
+create table userInformation(
+	`userID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    `userName` varchar(30) NOT NULL,
+	`userEmail` varchar(50) NOT NULL,
+	`userPassword` varchar(30) NOT NULL,
+	`userSecretQuestion` varchar(255) NOT NULL,
+	`userAnswer` varchar(50) NOT NULL,
+    `userStreetAddress` varchar(255) NOT NULL,
+	`userCity` varchar(50) NOT NULL,
+	`userState` varchar(50) NOT NULL,
+    `userZip` varchar(5) NOT NULL,
+    `userDateOfBirth` DATE NOT NULL, 
+    `userGender` enum('M','F','O'), 
+    `userBMI` float(7,4) NOT NULL, 
+    `userWeight` float(7,4) NOT NULL, 
+    `userHeight` float(7,4) NOT NULL, 
+    `userExerciseLevel` nvarchar(255) NOT NULL,
+	`userCalorieLimit` float(7,4) NOT NULL,
+    `userCalorieGoal` nvarchar(255) NOT NULL,
+    `userDietModDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+);
+
+create table userDailyCalorieIntake(
+	`userMealID` int( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    `userID` int( 11 ), 
+	`userMealMealOrDrinkCalories` float(7,4) NOT NULL,
+	`userDrinkOunces` float(7,4) default NULL,
+    `userMealOrDrinkDescription` float(7,4) NOT NULL,
+	`userMealOrDrinkEntryDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT fk_userInformation FOREIGN KEY (user_ID)
+	REFERENCES userInformation(user_ID)
+);
