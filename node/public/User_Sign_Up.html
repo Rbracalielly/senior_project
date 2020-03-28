@@ -1,0 +1,314 @@
+<html>
+<head>
+  <title>Calorie Calculator</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<style>
+
+.hide_show_create_account_information {
+  display: none;
+}
+
+</style>
+
+<script>
+  $("#signin_user_login").click(function() {
+    // get email and password
+    var email = document.getElementById("userEmail").value;
+    var password = document.getElementById("userPassword").value;
+    doLogin({ // this is the input (first argument of doLogin)
+      email: email,
+      password: password
+    }, function(err) { // this is the callback (second argument of doLogin)
+      // this function gets called after the ajax request completes
+      if (err) {
+        alert("Login failed " + err);
+      }
+      else {
+        alert("Login success!");
+        // ... and navigate to other page
+
+        location = 'https://www.caloriecalculator.com/user_profile'
+      }
+    });
+  });
+  function doLogin(input, callback) {
+    // for now, we simulate the ajax request and add 100ms delay
+    setTimeout(function() {
+      if (Math.random() < 0.1) {
+        // simulate failure 10% of the time
+        callback("Invalid username and/or password");
+      }
+      else {
+        // success 90% of the time
+        callback();
+      }
+    }, 100);
+  }
+</script>
+
+
+<script>
+
+	  //Function to Hide and Show the sign-up form.
+	  $(document).ready(function() {
+	  var Target = document.getElementById('show_create_account');
+
+		$("#user_account_creation").click(function() {
+		  Target.style.display = 'block';
+		});
+
+		$("#cancel_user_account_creation").click(function() {
+		  Target.style.display = 'none';
+		});
+
+
+		$("#cancel_user_login").click(function() {
+		  history.go(-1);
+		});
+
+	  });
+
+</script>
+
+
+<body>
+<!-- Create Table -->
+<table align=center>
+  <!-- Start -->
+  <tr>
+    <td>
+	  <form class="form-signin">
+		<img class="mb-4" src="https://i.postimg.cc/Z5cWLm0z/avatar-png-transparent-4.png" alt="" width="72" height="72">
+		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
+
+    <!-- Enter User Email -->
+		<label for="user_email" class="sr-only">Email address</label>
+		<input type="email" id="userEmail" class="form-control" placeholder="Email address" required autofocus>
+    <br>
+
+    <!-- Enter User Password -->
+    <label for="user_pasword" class="sr-only">Password</label>
+		<input type="password" id="userPassword" class="form-control" placeholder="Password" required>
+
+    <!-- User Remember Sign In Checkbox -->
+		<div class="checkbox mb-3">
+		  <label>
+		  <input type="checkbox" value="remember-me"> Stay Signed In
+		  </label>
+		</div>
+
+    <!-- User Sign In Or Canels Login -->
+		<button class="btn btn-lg btn-primary btn-block" type="submit" id="signin_user_login">Sign in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="reset" id="cancel_user_login">Cancel</button>
+
+	  </form>
+	  </td>
+  </tr>
+  <!-- End -->
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------------------------------------------->
+  <!-- Start -->
+  <tr>
+    <td>
+	  <div>
+		<button id="user_account_creation">Create Account</button>
+	  </div>
+	 </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+	 <td>
+	  <div class="hide_show_create_account_information" id="show_create_account">
+		<table id="pmt_interest">
+    <tr>
+		<td>
+		<label for="email"><b>User Name</b></label>
+		<input type="text" placeholder="User Name" name="userName" required>
+	 </td>
+  </tr>
+
+
+  <!-- Start -->
+	<tr>
+	  <td>
+		<label for="email"><b>Email</b></label>
+		<input type="text" placeholder="Enter Email" name="userEmail" required>
+	  </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <label for="confirm"><b>Password</b></label>
+		<input type="password" placeholder="Enter Password" name="userPassword" required>
+		</td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <label for="confirm"><b>Secret Question</b></label>
+		<input type="text" placeholder="Enter A Question" name="userSecretQuestion" required>
+		</td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Secret Question Answer</b></label>
+    <input type="text" placeholder="Enter An Answeer To The Above Question" name="userAnswer" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Steet Address</b></label>
+    <input type="text" placeholder="Enter Street Address" name="UserStreetAddress" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>City</b></label>
+    <input type="text" placeholder="Enter City" name="userCity" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>State</b></label>
+    <input type="text" placeholder="Enter State" name="userState" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Zip</b></label>
+    <input type="text" placeholder="Enter Zip" name="userZip" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Date of Birth</b></label>
+    <input type="text" placeholder="Enter DOB" name="userDateOfBirth" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+      <input type="radio" id="male" name="gender" value="male">
+    	<label for="male">Male</label><br>
+    	<input type="radio" id="female" name="gender" value="female">
+    	<label for="female">Female</label><br>
+    	<input type="radio" id="other" name="gender" value="other">
+    	<label for="other">Other</label><br><br>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>BMI</b></label>
+    <input type="text" placeholder="Enter BMI" name="userBMI" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Weight</b></label>
+    <input type="password" placeholder="Enter Weight" name="userWeight" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+      <label for="confirm"><b>Height (In Inches)</b></label>
+      <input type="password" placeholder="Enter Height" name="userHeight" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+      <label>Exercise Level:</label><br>
+    	<div class="custom-select" style="width:200px;" id = "exerciseLevel">
+    		<select>
+    			<option value="0">Select Level:</option>
+    			<option value="1">Light: Exercise 1-3 times/week</option>
+    			<option value="2">Moderate: Exercise 4-5 times/week</option>
+    			<option value="3">Active: Daily exercise or intens excercise 3-4 times/week</option>
+    	</select>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Calorie Limit</b></label>
+    <input type="text" placeholder="Enter Calorie Limit" name="userCalorieLimit" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+  <!-- Start -->
+  <tr>
+    <td>
+    <label for="confirm"><b>Calorie Goal</b></label>
+    <input type="text" placeholder="Enter Calorie Goal" name="userCalorieGoal" required>
+    </td>
+  </tr>
+  <!-- End -->
+
+
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <button type="submit" class="sign_up_user">Sign Up</button>
+		<button type="button" class="cancel_sign_up_user" id="cancel_user_account_creation">Cancel</button>
+		</td>
+	</tr>
+  <!-- End -->
+
+	</table>
+	</div>
+	</td>
+  </tr>
+<!-- End -->
+
+</table>
+<!-- Finish Table -->
+
+</body>
+</html>
