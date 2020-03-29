@@ -10,6 +10,12 @@ http.createServer(function(req, res) {
     if (path === "/users") {
       users(req, res);
     }
+    else if (path === "/userinformation") {
+      userinformation(req, res);
+    }
+    else if (path === "/userdailycalorieintake") {
+      userdailycalorieintake(req, res);
+    }
     else if (path === "/add_user") {
       addUser(req, res);
     }
@@ -80,6 +86,66 @@ function users(req, res) {
     }
     // query the database
     conn.query("SELECT * FROM USERS", function(err, rows, fields) {
+      // build json result object
+      var outjson = {};
+      if (err) {
+        // query failed
+        outjson.success = false;
+        outjson.message = "Query failed: " + err;
+      }
+      else {
+        // query successful
+        outjson.success = true;
+        outjson.message = "Query successful!";
+        outjson.data = rows;
+      }
+      // return json object that contains the result of the query
+      sendResponse(req, res, outjson);
+    });
+    conn.end();
+  });
+}
+
+function userinformation(req, res) {
+  var conn = mysql.createConnection(credentials.connection);
+  // connect to database
+  conn.connect(function(err) {
+    if (err) {
+      console.error("ERROR: cannot connect: " + e);
+      return;
+    }
+    // query the database
+    conn.query("SELECT * FROM userInformation", function(err, rows, fields) {
+      // build json result object
+      var outjson = {};
+      if (err) {
+        // query failed
+        outjson.success = false;
+        outjson.message = "Query failed: " + err;
+      }
+      else {
+        // query successful
+        outjson.success = true;
+        outjson.message = "Query successful!";
+        outjson.data = rows;
+      }
+      // return json object that contains the result of the query
+      sendResponse(req, res, outjson);
+    });
+    conn.end();
+  });
+}
+
+function userdailycalorieintake(req, res) {
+  var conn = mysql.createConnection(credentials.connection);
+  // connect to database
+  conn.connect(function(err) {
+    if (err) {
+      console.error("ERROR: cannot connect: " + e);
+      return;
+    }
+    // query the database
+    conn.query("SELECT * FROM userDailyCalorieIntake", function(err, rows, fields) {
       // build json result object
       var outjson = {};
       if (err) {
