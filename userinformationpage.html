@@ -8,11 +8,14 @@
 
 <script>
 // capture when the user clicks the daily caloric intake button
+$(document).ready(function(){
 $("#user_submit_calorie_button").click(function() {
+  //debuging
+  console.log("test");
   // get daily calories
   var meals = [];
   // we need to loop because there are multiple rows in the table
-  
+
   for (var i = 0; i < 10; i++) {
     meals.push({
       description: $("#meal_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems - RyanB created field 3/21/202
@@ -35,6 +38,7 @@ $("#user_submit_calorie_button").click(function() {
   });
   return false;
 });
+});
 function addCaloriesEntries(input, callback) {
   // for now, we simulate the ajax request and add 100ms delay
   setTimeout(function() {
@@ -52,7 +56,10 @@ function addCaloriesEntries(input, callback) {
 
 
 //Capture when the user clicks the daily water intake button
+$(document).ready(function(){
 $("#user_submit_water_button").click(function() {
+  //debuging
+  console.log("test");
   // get daily calories
   var water = [];
   // we need to loop because there are multiple rows in the table
@@ -76,6 +83,7 @@ $("#user_submit_water_button").click(function() {
 			//id assume the best place would be the user information page again
     }
   });
+});
 });
 function addGlassEntries(input, callback) {
   // for now, we simulate the ajax request and add 100ms delay
