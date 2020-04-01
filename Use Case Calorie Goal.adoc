@@ -1,0 +1,40 @@
+# Use Case: Add Caloric Intake Goal
+
+## Primary Actor: Member (Registered User)
+
+## Scope: Web Application
+
+## Level: Summary
+
+## Brief:
+
+The member enters a personal caloric intake goal. This is a guided process in which the member enters basic demographic information and the system calculates the caloric intake required to maintain current weight. The user can then edit the goal in order to create a deficit.
+
+## Preconditions:
+
+Member is a registered user.
+
+## Minimal Guarantees:
+Success Guarantees: The calorie goal is saved for future reference and for editing.
+
+Calculator determines the caloric intake to maintain current weight.
+The calorie goal is saved for future reference and for editing.
+
+## Triggers:
+
+The member invokes a request to create a caloric intake goal.
+## Basic flow:
+
+1. The system provides a form with the following inputs: Age (numeric only), Gender (Male of Female), Height (Feet and Inches), Current Weight(points), Level of exercise.
+2. The member enters in all information.
+3. The system calculates the calorie intake needs to maintain the members current weight.
+4. The member has the option to change the calorie intake number to match their current lifestyle if necessary.
+5. The member saves the caloric intake goal to their profile.
+6. The system presents the option for the member to find recipe and meal plans that will keep the member under the current caloric intake goal.
+
+## Extensions:
+
+2a. The member does not enter all required information and receives an error.
+3a. Timeout: The member receives a timeout error.
+4a. The member does not enter a valid numerical calorie goal and receives an error.
+5a. Timeout: The member receives a timeout error.

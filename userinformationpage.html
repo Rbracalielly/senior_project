@@ -1,0 +1,365 @@
+<html>
+<head>
+		<title>Calorie Calculator</title>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+<script>
+// capture when the user clicks the daily caloric intake button
+$("#user_submit_calorie_button").click(function() {
+  // get daily calories
+  var meals = [];
+  // we need to loop because there are multiple rows in the table
+  
+  for (var i = 0; i < 10; i++) {
+    meals.push({
+      description: $("#meal_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems - RyanB created field 3/21/202
+      calories: Number($("#meal_calories_" + i).val())
+    });
+  }
+  addCaloriesEntries({ // this is the input (first argument of addColoriesEntries)
+    meals: meals
+  }, function(err) { // this is the callback (second argument of addCaloriesEntries)
+    // this function gets called after the ajax request completes
+    if (err) {
+      alert("Adding calories failed: " + err);
+    }
+    else {
+      alert("Added calories!");
+      // ... and navigate to other page
+			//not sure where to nav to here?
+			//id assume the best place would be the user information page again
+    }
+  });
+  return false;
+});
+function addCaloriesEntries(input, callback) {
+  // for now, we simulate the ajax request and add 100ms delay
+  setTimeout(function() {
+    if (Math.random() < 0.1) {
+      // simulate failure 10% of the time
+      callback("Unspecified error");
+    }
+    else {
+      // success 90% of the time
+      callback();
+    }
+  }, 100);
+}
+
+
+
+//Capture when the user clicks the daily water intake button
+$("#user_submit_water_button").click(function() {
+  // get daily calories
+  var water = [];
+  // we need to loop because there are multiple rows in the table
+  for (var i = 0; i < 10; i++) {
+    water.push({
+      description: $("#water_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems useful - RyanB created field 3/21/2020
+      calories: Number($("#water_ounces_" + i).val())
+    });
+  }
+  ({ // this is the input (first argument of addColoriesEntries)
+    meals: meals
+  }, function(err) { // this is the callback (second argument of addCaloriesEntries)
+    // this function gets called after the ajax request completes
+    if (err) {
+      alert("Adding ounces failed: " + err);
+    }
+    else {
+      alert("Added ounces!");
+      // ... and navigate to other page
+			//not sure where to nav to here?
+			//id assume the best place would be the user information page again
+    }
+  });
+});
+function addGlassEntries(input, callback) {
+  // for now, we simulate the ajax request and add 100ms delay
+  setTimeout(function() {
+    if (Math.random() < 0.1) {
+      // simulate failure 10% of the time
+      callback("Unspecified error");
+    }
+    else {
+      // success 90% of the time
+      callback();
+    }
+  }, 100);
+}
+
+</script>
+
+<script>
+  $(document).ready(function(){
+    $(".calories").each(function() {
+      $(this).keyup(function(){
+    calculateCaloricSum();
+    });
+  });
+});
+
+  function calculateCaloricSum() {
+    var sum = 0;
+    $(".calories").each(function() {
+      if(!isNaN(this.value) && this.value.length!=0) {
+        sum += parseFloat(this.value);
+      }
+    });
+  $("#total_caloric_sum").html(sum.toFixed(0));
+}
+
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    $(".water").each(function() {
+      $(this).keyup(function(){
+    calculateOuncesSum();
+    });
+  });
+});
+
+  function calculateOuncesSum() {
+    var sum = 0;
+    $(".water").each(function() {
+      if(!isNaN(this.value) && this.value.length!=0) {
+        sum += parseFloat(this.value);
+      }
+    });
+  $("#total_ounces_sum").html(sum.toFixed(0));
+}
+
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    $(".water_calories").each(function() {
+      $(this).keyup(function(){
+    calculateOuncesSum();
+    });
+  });
+});
+
+  function calculateOuncesSum() {
+    var sum = 0;
+    $(".water_calories").each(function() {
+      if(!isNaN(this.value) && this.value.length!=0) {
+        sum += parseFloat(this.value);
+      }
+    });
+  $("#total_water_sum").html(sum.toFixed(0));
+}
+
+</script>
+
+<body>
+<!--User Informaton-->
+<h3>User Infomation</h3>
+
+
+
+
+<!--Caloric Intake-->
+<h3>Daily Caloric Intake</h3>
+
+
+<!--Caloric Intake Table-->
+<table width="300px" border="1">
+	<tr>
+		<td width="40px">Meal 1</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_0" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_0" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 2</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_1" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_1" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 3</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_2" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_2" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 4</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_3" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_3" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 5</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_4" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_4" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Meal 6</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_5" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_5" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 7</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_6" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_6" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 8</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_7" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_7" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 9</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_8" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_8" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Meal 10</td>
+		<td>Enter Calories</td>
+		<td><input id = "class_carories_9" class="calories" type="text" name="txt"/></td>
+		<td>Enter Meal Description</td>
+		<td><input id="class_meal_description_9" class="meal_description" type="text" name="txt"/></td>
+	</tr>
+	<tr id="summation">
+		<td>All Meals</td>
+		<td>Total Calories</td>
+		<td align="center"><span id="total_caloric_sum">0</span></td>
+	</tr>
+</table>
+<input type="submit" value="Submit User Caloric Intake" id="user_submit_calorie_button">
+
+
+<!--Button to submit Caloric Intak-->
+<br>
+
+
+<!--Hydration Level-->
+<h3>Daily Hydration Levels</h3>
+
+
+<!--Hydration Intake Table-->
+<table width="300px" border="1">
+	<tr>
+		<td width="40px">Glass 1</td>
+		<td>Enter Ounces</td>
+		<td><input id = "class_water_ounces_0" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+    <td><input id = "class_water_calories_0" class="water_calories" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_0" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 2</td>
+		<td>Enter Ounces</td>
+		<td><input id = "class_water_ounces_1" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+    <td><input id = "class_water_calories_1" class="water_calories" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_1" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 3</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_2" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+    <td><input id = "class_water_calories_2" class="water_calories" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_2" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 4</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_3" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+    <td><input id = "class_water_calories_3" class="water_calories" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_3" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 5</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_4" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_4" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_4" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 6</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_5" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_5" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_5" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr>
+		<td>Glass 7</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_6" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_6" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_6" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 8</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_7" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_7" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_7" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 9</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_8" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_8" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_8" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 10</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_9" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_9" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_9" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+	<tr id="summation">
+		<td>All Drinks</td>
+		<td>Total Ounces</td>
+		<td align="center"><span id="total_ounces_sum">0</span></td>
+		<td>Total calories</td>
+		<td align="center"><span id="total_water_sum">0</span></td>
+	</tr>
+</table>
+<input type="submit" value="Submit User Water Intake" id="user_submit_water_button">
+
+
+</body>
+</html>

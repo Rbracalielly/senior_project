@@ -1,0 +1,42 @@
+# Security Document
+
+
+## What is this document?
+This is a living document covering on a high-level view of the security used calorie deficit application.  {nbsp} +
+
+## How will we make sure the system is secure and data safe? {nbsp} +
+- Using SSL to keep sensitive information encrypted across web traffic. {nbsp} +
+- Scrubbing text that users submit to prevent SQL injections {nbsp} +
+- Salting and hashing user passwords to prevent various attacks such as brute force, lookup tables, and reverse lookup tables, and etc. {nbsp} + 
+- Using a web application firewall to scan traffic {nbsp} +
+
+## What data do we need to protect? 
+- Basic User: {nbsp} +
+  Full Name {nbsp} +
+  Age {nbsp} +
+  Address {nbsp} +
+  Gender {nbsp} +
+  {nbsp} +
+- Paymnet Information: {nbsp} +
+  Billed User Full Name {nbsp} +
+  Credit Card Information {nbsp} +
+  Billed Address {nbsp} +
+  {nbsp} +
+- Personal Health Information
+  User BMI {nbsp} +
+  User Fat Percentage {nbsp} +
+  User Weight {nbsp} +
+  
+## How will we protect the application's sensitive data?
+- User account passwords salted and hashed along with meeting various strong password requirements {nbsp} +
+- User accounts only have access to their accounts {nbsp} + 
+- Limited admin accounts {nbsp} +
+- All web traffic is encrypted and scanned {nbsp} +
+
+## What specific technologies will we use to for protection?
+- Web server implentation using SSL/HTTPS {nbsp} +
+- Cryptography implenmtation for passwords {nbsp} +
+
+## Document History
+- Ryan Bracalielly created version 1.0 3/13/2020 at 9:08 PM EST  {nbsp} +
+
