@@ -5,61 +5,6 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-<script>
-
-// capture when the user clicks information the button
-$("#user_submit_information_button").click(function() {
-  // get information from user input field
-  var age = Number($("#input_field").val());
-	var gender = Text($("#input_field").val());
-	var currentWeight = Number($("#input_field").val());
-	var feet = Number($("#input_field").val());
-	var inches = Number($("#input_field").val());
-
-	//note sure how to pass a value from a radio and drop down select
-	var gender = Text($("#input_field").val());
-	var exerciseLevel = Text($("#input_field").val());
-
-	addUserInformationEntry({ // this is the input (first argument of addCaloriesEntry)
-	    age: age,
-			gender: gender,
-			currentWeight: CurrentWeight,
-			feet:
-			inches:
-
-			gender:
-			exerciseLevel:
-
-	  }, function(err) { // this is the callback (second argument of addCaloriesEntry)
-	    // this function gets called after the ajax request completes
-	    if (err) {
-	      alert("Saving calories failed: " + err);
-	    }
-	    else {
-	      alert("Saved calories successfully!");
-	    }
-	  });
-	});
-
-
-	function addCaloriesEntry(input, callback) {
-	  // for now, we simulate the ajax request and add 100ms delay
-	  setTimeout(function() {
-	    if (Math.random() < 0.1) {
-	      // simulate failure 10% of the time
-	      callback("Unspecified error");
-	    }
-	    else {
-	      // success 90% of the time
-	      callback();
-	    }
-	  }, 100);
-	}
-
-
-</script>
-
-
 
 <script>
 // capture when the user clicks the daily caloric intake button
@@ -67,13 +12,14 @@ $("#user_submit_calorie_button").click(function() {
   // get daily calories
   var meals = [];
   // we need to loop because there are multiple rows in the table
+  
   for (var i = 0; i < 10; i++) {
     meals.push({
       description: $("#meal_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems - RyanB created field 3/21/202
       calories: Number($("#meal_calories_" + i).val())
     });
   }
-  ({ // this is the input (first argument of addColoriesEntries)
+  addCaloriesEntries({ // this is the input (first argument of addColoriesEntries)
     meals: meals
   }, function(err) { // this is the callback (second argument of addCaloriesEntries)
     // this function gets called after the ajax request completes
@@ -87,6 +33,7 @@ $("#user_submit_calorie_button").click(function() {
 			//id assume the best place would be the user information page again
     }
   });
+  return false;
 });
 function addCaloriesEntries(input, callback) {
   // for now, we simulate the ajax request and add 100ms delay
@@ -102,7 +49,9 @@ function addCaloriesEntries(input, callback) {
   }, 100);
 }
 
-//apture when the user clicks the daily water intake button
+
+
+//Capture when the user clicks the daily water intake button
 $("#user_submit_water_button").click(function() {
   // get daily calories
   var water = [];
@@ -213,88 +162,84 @@ function addGlassEntries(input, callback) {
 <!--User Informaton-->
 <h3>User Infomation</h3>
 
-<!--User Input Feilds-->
 
-
-
-<form action="/action_page.php">
 
 
 <!--Caloric Intake-->
 <h3>Daily Caloric Intake</h3>
 
-<form action="/action_page.php">
+
 <!--Caloric Intake Table-->
 <table width="300px" border="1">
 	<tr>
 		<td width="40px">Meal 1</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_0" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_0" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 2</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_1" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_1" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 3</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_2" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_2" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 4</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_3" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_3" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 5</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_4" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_4" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 6</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_5" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_5" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 7</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_6" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_6" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 8</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_7" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_7" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 9</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_8" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_8" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 10</td>
 		<td>Enter Calories</td>
-		<td><input class="calories" type="text" name="txt"/></td>
+		<td><input id = "class_carories_9" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input class="meal_description" type="text" name="txt"/></td>
+		<td><input id="class_meal_description_9" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr id="summation">
 		<td>All Meals</td>
@@ -303,7 +248,7 @@ function addGlassEntries(input, callback) {
 	</tr>
 </table>
 <input type="submit" value="Submit User Caloric Intake" id="user_submit_calorie_button">
-</form>
+
 
 <!--Button to submit Caloric Intak-->
 <br>
@@ -312,89 +257,98 @@ function addGlassEntries(input, callback) {
 <!--Hydration Level-->
 <h3>Daily Hydration Levels</h3>
 
-<form action="/action_page.php">
+
 <!--Hydration Intake Table-->
 <table width="300px" border="1">
 	<tr>
 		<td width="40px">Glass 1</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+		<td><input id = "class_water_ounces_0" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+    <td><input id = "class_water_calories_0" class="water_calories" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_0" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Glass 2</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+		<td><input id = "class_water_ounces_1" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+    <td><input id = "class_water_calories_1" class="water_calories" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_1" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Glass 3</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_2" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+    <td><input id = "class_water_calories_2" class="water_calories" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_2" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Glass 4</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_3" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+    <td><input id = "class_water_calories_3" class="water_calories" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_3" class="glass_description" type="text" name="txt"/></td>
+	</tr>
+  <tr>
+		<td>Glass 5</td>
+		<td>Enter Ounces</td>
+    <td><input id = "class_water_ounces_4" class="water_ounces" type="text" name="txt"/></td>
+		<td>Enter Calories</td>
+		<td><input class="water_calories_4" type="text" name="txt"/></td>
+		<td>Enter Glass Description</td>
+    <td><input id="class_glass_description_4" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Glass 6</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_5" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+		<td><input class="water_calories_5" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_5" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Glass 7</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_6" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+		<td><input class="water_calories_6" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_6" class="glass_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Glass 8</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_7" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+		<td><input class="water_calories_7" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_7" class="glass_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Glass 9</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_8" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+		<td><input class="water_calories_8" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_8" class="glass_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Glass 10</td>
 		<td>Enter Ounces</td>
-		<td><input class="water" type="text" name="txt"/></td>
+    <td><input id = "class_water_ounces_9" class="water_ounces" type="text" name="txt"/></td>
 		<td>Enter Calories</td>
-		<td><input class="water_calories" type="text" name="txt"/></td>
+		<td><input class="water_calories_9" type="text" name="txt"/></td>
 		<td>Enter Glass Description</td>
-		<td><input class="glass_description" type="text" name="txt"/></td>
+    <td><input id="class_glass_description_9" class="glass_description" type="text" name="txt"/></td>
 	</tr>
 	<tr id="summation">
 		<td>All Drinks</td>
@@ -405,7 +359,6 @@ function addGlassEntries(input, callback) {
 	</tr>
 </table>
 <input type="submit" value="Submit User Water Intake" id="user_submit_water_button">
-</form>
 
 
 </body>
