@@ -77,8 +77,10 @@ $("#user_submit_water_button").click(function() {
       calories: Number($("#water_ounces_" + i).val())
     });
   }
-  ({ // this is the input (first argument of addColoriesEntries)
-    meals: meals
+console.log(water);
+	addDrinkEntries({ // this is the input (first argument of addColoriesEntries)
+    water: water
+
   }, function(err) { // this is the callback (second argument of addCaloriesEntries)
     // this function gets called after the ajax request completes
     if (err) {
@@ -91,21 +93,40 @@ $("#user_submit_water_button").click(function() {
 			//id assume the best place would be the user information page again
     }
   });
+	return false;
 });
 });
 function addGlassEntries(input, callback) {
   // for now, we simulate the ajax request and add 100ms delay
-  setTimeout(function() {
-    if (Math.random() < 0.1) {
-      // simulate failure 10% of the time
-      callback("Unspecified error");
-    }
-    else {
-      // success 90% of the time
-      callback();
-    }
-  }, 100);
+  $.ajax ({
+		type: "POST",
+		url: "add_drink",
+		data: JSON.stringify(drinks),
+		success: function(json) {
+			//console.log(JSON.stringify(json));
+			if (!Json.success) {
+				callback(json.message);
+			}
+			else {
+				callback();
+			}
+		},
+		error: function (textStatus, errorThrown) {
+			callback("Request failed");
+		}
+	};
 }
+//setTimeout(function() {
+    //if (Math.random() < 0.1) {
+      // simulate failure 10% of the time
+      //callback("Unspecified error");
+    //}
+    //else {
+      // success 90% of the time
+      //callback();
+    //}
+  //}, 100);
+//}
 
 </script>
 
