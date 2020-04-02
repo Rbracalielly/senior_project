@@ -11,7 +11,7 @@
 $(document).ready(function(){
 $("#user_submit_calorie_button").click(function() {
   //debuging
-  console.log("test");
+  //console.log("test");
   // get daily calories
   var meals = [];
   // we need to loop because there are multiple rows in the table
@@ -22,8 +22,10 @@ $("#user_submit_calorie_button").click(function() {
       calories: Number($("#meal_calories_" + i).val())
     });
   }
+console.log(meals);
   addCaloriesEntries({ // this is the input (first argument of addColoriesEntries)
     meals: meals
+
   }, function(err) { // this is the callback (second argument of addCaloriesEntries)
     // this function gets called after the ajax request completes
     if (err) {
@@ -39,20 +41,26 @@ $("#user_submit_calorie_button").click(function() {
   return false;
 });
 });
-function addCaloriesEntries(input, callback) {
-  // for now, we simulate the ajax request and add 100ms delay
-  setTimeout(function() {
-    if (Math.random() < 0.1) {
-      // simulate failure 10% of the time
-      callback("Unspecified error");
+function addCaloriesEntries(meals, callback) {
+  // make an ajax request to the server to save the calories information
+  $.ajax({
+    type: "POST",
+    url: "add_meal",
+    data: JSON.stringify(meals),
+    success: function(json) {
+      //console.log(JSON.stringify(json));
+      if (!json.success) {
+        callback(json.message);
+      }
+      else {
+        callback();
+      }
+    },
+    error: function (textStatus, errorThrown) {
+       callback("Request failed");
     }
-    else {
-      // success 90% of the time
-      callback();
-    }
-  }, 100);
+  });
 }
-
 
 
 //Capture when the user clicks the daily water intake button
@@ -182,72 +190,72 @@ function addGlassEntries(input, callback) {
 	<tr>
 		<td width="40px">Meal 1</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_0" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_0" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_0" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_0" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 2</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_1" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_1" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_1" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_1" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 3</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_2" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_2" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_2" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_2" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 4</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_3" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_3" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_3" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_3" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 5</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_4" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_carories_4" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_4" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_4" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr>
 		<td>Meal 6</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_5" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_5" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_5" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_5" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 7</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_6" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_6" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_6" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_6" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 8</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_7" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_7" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_7" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_7" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 9</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_8" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_8" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_8" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_8" class="meal_description" type="text" name="txt"/></td>
 	</tr>
   <tr>
 		<td>Meal 10</td>
 		<td>Enter Calories</td>
-		<td><input id = "class_carories_9" class="calories" type="text" name="txt"/></td>
+		<td><input id = "meal_calories_9" class="calories" type="text" name="txt"/></td>
 		<td>Enter Meal Description</td>
-		<td><input id="class_meal_description_9" class="meal_description" type="text" name="txt"/></td>
+		<td><input id="meal_description_9" class="meal_description" type="text" name="txt"/></td>
 	</tr>
 	<tr id="summation">
 		<td>All Meals</td>
