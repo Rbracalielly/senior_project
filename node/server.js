@@ -266,8 +266,7 @@ function addDrink(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO userDailyHydrationLevels"(userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription
-VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], function(err, rows, fields) {
+      conn.query("INSERT INTO userDailyHydrationLevels (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], function(err, rows, fields) {
         var.outjson = {};
         if (err) {
           outjson.success = false;
