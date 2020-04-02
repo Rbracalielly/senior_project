@@ -267,7 +267,7 @@ function addDrink(req, res) {
         return;
       }
       conn.query("INSERT INTO userDailyHydrationLevels (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], function(err, rows, fields) {
-        var.outjson = {};
+        var outjson = {};
         if (err) {
           outjson.success = false;
           outjson.message = "Query failed: " + err;
