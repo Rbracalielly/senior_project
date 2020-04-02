@@ -250,5 +250,39 @@ function addMeal(req, res) {
   });
 }
 
+function addDrink(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    if (body.length > 1e6) {
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("INSERT INTO userDailyHydrationLevels"(userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription
+VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], function(err, rows, fields) {
+        var.outjson = {};
+        if (err) {
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
+
 
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
