@@ -83,7 +83,7 @@ function addDrinkEntries(input, callback) {
 	$.ajax ({
 		type: "POST",
 		url: "add_drink",
-		data: JSON.stringify(drinks),
+		data: JSON.stringify(water),
 		success: function(json) {
 			if (!JSON.success) {
 				callback(json.message);
@@ -120,7 +120,7 @@ function addGlassEntries(input, callback) {
   $.ajax ({
 		type: "POST",
 		url: "add_drink",
-		data: JSON.stringify(drinks),
+		data: JSON.stringify(water),
 		success: function(json) {
 			//console.log(JSON.stringify(json));
 			if (!Json.success) {
