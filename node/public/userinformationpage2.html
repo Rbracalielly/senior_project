@@ -79,6 +79,26 @@
           });
         }
         console.log(water);
+        
+      function addDrinkEntries(input, callback) {
+        	$.ajax ({
+        		type: "POST",
+        		url: "add_drink",
+        		data: JSON.stringify(water),
+        		success: function(json) {
+        			if (!JSON.success) {
+        				callback(json.message);
+        			}
+        			else {
+        				callback();
+        			}
+        		},
+        		error: function (textStatus, errorThrown) {
+        			callback("Request failed");
+        		}
+        	});
+        }
+
         addDrinkEntries({ // this is the input (first argument of addColoriesEntries)
           water: water
 
