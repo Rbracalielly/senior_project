@@ -22,6 +22,9 @@ http.createServer(function(req, res) {
     else if (path === "/add_meal") {
       addMeal(req, res);
     }
+    else if (path === "/add_drink") {
+      addDrink(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
