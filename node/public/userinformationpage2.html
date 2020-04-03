@@ -73,9 +73,9 @@
         // we need to loop because there are multiple rows in the table
         for (var i = 0; i < 10; i++) {
           water.push({
-            description: $("#water_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems useful - RyanB created field 3/21/2020
-            ounces: Number($("#water_ounces_" + i).val()),
-            calories: Number($("#water_calories_" + i).val())
+            description: $("#class_glass_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems useful - RyanB created field 3/21/2020
+            ounces: Number($("#class_water_ounces_" + i).val()),
+            calories: Number($("#class_water_calories_" + i).val())
           });
         }
         console.log(water);
