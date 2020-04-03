@@ -22,6 +22,9 @@ http.createServer(function(req, res) {
     else if (path === "/add_meal") {
       addMeal(req, res);
     }
+    else if (path === "/add_drink") {
+      addDrink(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
@@ -243,6 +246,39 @@ function addMeal(req, res) {
           outjson.message = "Query successful!";
         }
         // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
+
+function addDrink(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    if (body.length > 1e6) {
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[1,injson.water[0].calories, injson.water[0].description], function(err, rows, fields) {
+        var outjson = {};
+        if (err) {
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
         sendResponse(req, res, outjson);
       });
       conn.end();
