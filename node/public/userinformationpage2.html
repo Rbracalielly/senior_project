@@ -106,7 +106,7 @@
         data: JSON.stringify(water),
         success: function(json) {
           //console.log(JSON.stringify(json));
-          if (!Json.success) {
+          if (!json.success) {
             callback(json.message);
           } else {
             callback();
