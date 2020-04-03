@@ -74,7 +74,8 @@ $("#user_submit_water_button").click(function() {
   for (var i = 0; i < 10; i++) {
     water.push({
       description: $("#water_description_" + i).val(), // note: this field does not actually exist, but describing a meal seems useful - RyanB created field 3/21/2020
-      calories: Number($("#water_ounces_" + i).val())
+			ounces: Number($("#water_ounces_" + i ).val()),
+      calories: Number($("#water_calories_" + i).val())
     });
   }
 console.log(water);
@@ -173,7 +174,7 @@ function addGlassEntries(input, callback) {
 
 <script>
   $(document).ready(function(){
-    $(".water").each(function() {
+    $(".water_ounces").each(function() {
       $(this).keyup(function(){
     calculateOuncesSum();
     });
@@ -182,7 +183,7 @@ function addGlassEntries(input, callback) {
 
   function calculateOuncesSum() {
     var sum = 0;
-    $(".water").each(function() {
+    $(".water_ounces").each(function() {
       if(!isNaN(this.value) && this.value.length!=0) {
         sum += parseFloat(this.value);
       }
