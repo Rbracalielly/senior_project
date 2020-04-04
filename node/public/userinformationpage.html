@@ -195,14 +195,66 @@
       });
       $("#total_water_sum").html(sum.toFixed(0));
     }
+  </script>
+
+  <script>
+  // capture when the user inputs dates to pass for SQL query
+  $(document).ready(function(){
+  $("#user_report_dates_submit").click(function() {
+    //debuging
+    console.log("test");
+    // get daily calories
+    var userReport = [];
+    // we need to loop because there are multiple rows in the table
+
+    for (var i = 0; i < 2; i++) {
+      userReport.push($("#user_report_date_" + i).val());
+    }
+
+    passUserDate({ // this is the input (first argument of userCreationInfo)
+      userReport
+
+    }, function(err) { // this is the callback (second argument of userCreationInfo)
+      // this function gets called after the ajax request completes
+      if (err) {
+        alert("Failed passing user report data: " + err);
+      }
+      else {
+        alert("Passed user report data");
+        // ... and navigate to other page
+  			//not sure where to nav to here?
+  			//id assume the best place would be the user information page again
+      }
+    });
+    return false;
+  });
+  });
+  function passUserDate(userReport, callback) {
+    // make an ajax request to the server to save the calories information
+    $.ajax({
+      type: "POST",
+      url: "user_report",
+      data: JSON.stringify(userReport),
+      success: function(json) {
+        //console.log(JSON.stringify(json));
+        if (!json.success) {
+          callback(json.message);
+        }
+        else {
+          callback();
+        }
+      },
+      error: function (textStatus, errorThrown) {
+         callback("Request failed");
+      }
+    });
+  }
 
   </script>
 
   <body>
     <!--User Informaton-->
     <h3>User Infomation</h3>
-
-
 
 
     <!--Caloric Intake-->
@@ -399,6 +451,20 @@
       </tr>
   </table>
     <input type="submit" value="Submit User Water Intake" id="user_submit_water_button">
+
+  <table>
+    <tr>
+      <td>
+      </b>
+      <label>User Reporting:</label><br>
+      <label for="confirm"><b>Report Start Date (Example: 2008-01-01)</b></label>
+      <input type="text" placeholder="Report Start End" name="userDateOfBirth" id = "user_report_date_0" required>
+      <label for="confirm"><b>Report End Date (Example: 2008-01-05)</b></label>
+      <input type="text" placeholder="Report End Date" name="userDateOfBirth" id = "user_report_date_1" required>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Dates for reportong" id="user_report_dates_submit">
 
 
   </body>
