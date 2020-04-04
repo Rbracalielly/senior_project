@@ -349,15 +349,19 @@ function userReport(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = 1) and (userMealOrDrinkEntryDate BETWEEN '2008-01-01' and '2008-01-05') order by userMealMealOrDrinkCalories desc", function(err, rows, fields) {
+      console.log(injson);
+      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [1,injson.userReport[0], injson.userReport[1]], function(err, rows, fields) {
         var outjson = {};
         if (err) {
           outjson.success = false;
           outjson.message = "Query failed: " + err;
+          console.log(outjson.data);
         }
         else {
           outjson.success = true;
           outjson.message = "Query successful!";
+          outjson.data = rows;
+          console.log(outjson.data);
         }
         sendResponse(req, res, outjson);
       });
