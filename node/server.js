@@ -28,6 +28,9 @@ http.createServer(function(req, res) {
     else if (path === "/add_new_user") {
       addNewUser(req, res);
     }
+    else if (path === "/user_report") {
+      userReport(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
@@ -330,5 +333,37 @@ function addNewUser(req, res) {
   });
 }
 
+function userReport(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    if (body.length > 1e6) {
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = 1) and (userMealOrDrinkEntryDate BETWEEN '2008-01-01' and '2008-01-05') order by userMealMealOrDrinkCalories desc", function(err, rows, fields) {
+        var outjson = {};
+        if (err) {
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
 
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
