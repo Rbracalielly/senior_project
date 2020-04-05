@@ -3,52 +3,6 @@ var fs = require("fs");
 var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-
-var app = express();
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/usersignup.html'));
-});
-app.post('/auth', function(request, response) {
-	var username = request.body.username;
-	var password = request.body.password;
-	if (username && password) {
-		connection.query('SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?', [userEmail, userPassword], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = userEmail;
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}
-			response.end();
-		});
-	} else {
-		response.send('Please enter email and Password!');
-		response.end();
-	}
-});
-app.get('/userinformationpage', function(request, response) {
-	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.userEmail + '!');
-	} else {
-		response.send('Please login to view this page!');
-	}
-	response.end();
-});
-
-
-
 
 
 http.createServer(function(req, res) {
@@ -57,8 +11,11 @@ http.createServer(function(req, res) {
     if (path === "/users") {
       users(req, res);
     }
-    else if (path === "/userinformation") {
+		else if (path === "/user_login") {
       userinformation(req, res);
+		}
+    else if (path === "/userinformation") {
+      userLogin(req, res);
     }
     else if (path === "/userdailycalorieintake") {
       userdailycalorieintake(req, res);
@@ -134,6 +91,54 @@ function sendResponse(req, res, data) {
   res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
   res.end(JSON.stringify(data));
 }
+
+function userLogin(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      // query the database
+		if (userEmail && userPassword)  {
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, rows, fields) {        // build json result object
+        var outjson = {};
+
+/// i'm here!
+				if (results.length > 0) {
+					alert("Login success!");
+          // ... and navigate to other page
+
+          location = "/userinformationpage.html"
+				}
+				else {
+					alert("Login failed " + err);
+				}
+			})
+
+
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      }
+      conn.end();
+    });
+});
+}
+
+
+
 
 function users(req, res) {
   var conn = mysql.createConnection(credentials.connection);

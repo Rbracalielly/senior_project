@@ -15,42 +15,6 @@
 
 </style>
 
-<script>
-  $("#signin_user_login").click(function() {
-    console.log("test");
-    var email = document.getElementById("userEmail").value;
-    var password = document.getElementById("userPassword").value;
-    doLogin({ // this is the input (first argument of doLogin)
-      email: email,
-      password: password
-    }, function(err) { // this is the callback (second argument of doLogin)
-      // this function gets called after the ajax request completes
-      if (err) {
-        alert("Login failed " + err);
-      }
-      else {
-        alert("Login success!");
-        // ... and navigate to other page
-
-        location = 'https://www.caloriecalculator.com/user_profile'
-      }
-    });
-  });
-  function doLogin(input, callback) {
-    // for now, we simulate the ajax request and add 100ms delay
-    setTimeout(function() {
-      if (Math.random() < 0.1) {
-        // simulate failure 10% of the time
-        callback("Invalid username and/or password");
-      }
-      else {
-        // success 90% of the time
-        callback();
-      }
-    }, 100);
-  }
-</script>
-
 
 <script>
 
@@ -82,7 +46,7 @@
   <!-- Start -->
   <tr>
     <td>
-	
+
 		<img class="mb-4" src="https://i.postimg.cc/Z5cWLm0z/avatar-png-transparent-4.png" alt="" width="72" height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
 
@@ -109,6 +73,54 @@
 	  </td>
   </tr>
   <!-- End -->
+
+
+  <script>
+// signin using credintials in server
+  $(document).ready(function() {
+    $("#signin_user_login").click(function() {
+      //debugging
+      console.log("test");
+      var email = document.getElementById("userEmail").value;
+      var password = document.getElementById("userPassword").value;
+      doLogin({ // this is the input (first argument of doLogin)
+        email: userEmail,
+        password: userPassword
+      }, function(err) { // this is the callback (second argument of doLogin)
+        // this function gets called after the ajax request completes
+        if (err) {
+          alert("Login failed " + err);
+        }
+        else {
+          alert("Login success!");
+          // ... and navigate to other page
+
+          location = "/userinformationpage.html"
+        }
+      });
+    });
+  });
+  function doLogin(login, callback) {
+    // make an ajax request to the server to save the calories information
+    $.ajax({
+      type: "POST",
+      url: "user_login",
+      data: JSON.stringify(login),
+      success: function(json) {
+        //console.log(JSON.stringify(json));
+        if (!json.success) {
+          callback(json.message);
+        } else {
+          callback();
+        }
+      },
+      error: function(textStatus, errorThrown) {
+        callback("Request failed");
+      }
+    });
+  }
+  </script>
+
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
