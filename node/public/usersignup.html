@@ -17,7 +17,7 @@
 
 <script>
   $("#signin_user_login").click(function() {
-    // get email and password
+    console.log("test");
     var email = document.getElementById("userEmail").value;
     var password = document.getElementById("userPassword").value;
     doLogin({ // this is the input (first argument of doLogin)
@@ -82,7 +82,7 @@
   <!-- Start -->
   <tr>
     <td>
-	  <form class="form-signin">
+	
 		<img class="mb-4" src="https://i.postimg.cc/Z5cWLm0z/avatar-png-transparent-4.png" alt="" width="72" height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
 
@@ -106,7 +106,6 @@
 		<button class="btn btn-lg btn-primary btn-block" type="submit" id="signin_user_login">Sign in</button>
 		<button class="btn btn-lg btn-primary btn-block" type="reset" id="cancel_user_login">Cancel</button>
 
-	  </form>
 	  </td>
   </tr>
   <!-- End -->
