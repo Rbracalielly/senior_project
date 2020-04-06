@@ -126,6 +126,9 @@ function userLogin(req, res) {
           console.log("Login failed " + err);
         }
       })
+      if (err) {
+        console.log(err);
+      }
       // return json object that contains the result of the query
       sendResponse(req, res);
     })
