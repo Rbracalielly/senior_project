@@ -112,9 +112,19 @@ function userLogin(req, res) {
         return;
       }
       // query the database
-      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, results, fields) { // build json result object
-        var outjson = {};
-        if (results.length > 0) {
+			console.log(injson);
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, rows, fields) { // build json result object
+				if (err) {
+	console.log(err);
+}
+				var outjson = {};
+				if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+        if (rows.length > 0) {
           //debugging
           console.log("Test:" + results);
           //end debugging
@@ -125,13 +135,14 @@ function userLogin(req, res) {
         } else {
           console.log("Login failed " + err);
         }
-      })
+      }
       // return json object that contains the result of the query
       sendResponse(req, res);
     })
     conn.end();
 
   });
+});
 }
 
 
