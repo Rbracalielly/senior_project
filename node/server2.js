@@ -113,7 +113,7 @@ function userLogin(req, res) {
       }
       // query the database
 			console.log(injson);
-      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, rows, fields) { // build json result object
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.userEmail, injson.userPassword], function(err, rows, fields) { // build json result object
 				if (err) {
 	console.log(err);
 }
