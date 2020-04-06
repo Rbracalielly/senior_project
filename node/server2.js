@@ -165,7 +165,11 @@ function users(req, res) {
     });
     conn.end();
   });
+  if (err) {
+  console.log(err);
+  }
 }
+
 
 function userinformation(req, res) {
   var conn = mysql.createConnection(credentials.connection);
