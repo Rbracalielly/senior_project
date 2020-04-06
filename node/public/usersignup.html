@@ -76,50 +76,53 @@
 
 
   <script>
-// signin using credintials in server
-  $(document).ready(function() {
-    $("#signin_user_login").click(function() {
-      //debugging
-      //console.log("test");
-      var email = document.getElementById("userEmail").value;
-      var password = document.getElementById("userPassword").value;
-      doLogin({ // this is the input (first argument of doLogin)
-        email: userEmail,
-        password: userPassword
-      }, function(err) { // this is the callback (second argument of doLogin)
-        // this function gets called after the ajax request completes
-        if (err) {
-          alert("Login failed " + err);
-        }
-        else {
-          alert("Login success!");
-          // ... and navigate to other page
+    // signin using credintials in server
+    $(document).ready(function() {
+      $("#signin_user_login").click(function() {
 
-          location = "/userinformationpage.html"
-        }
+        var email = document.getElementById("userEmail").value;
+        var password = document.getElementById("userPassword").value;
+        //debugging
+        console.log("test: " + email);
+        doLogin({ // this is the input (first argument of doLogin)
+          email: email,
+          password: password
+        }, function(err) { // this is the callback (second argument of doLogin)
+          // this function gets called after the ajax request completes
+          if (err) {
+            alert("Login failed: " + err);
+          } else {
+            alert("Login success!");
+            // ... and navigate to other page
+
+            location = "/userinformationpage.html"
+          }
+        });
       });
     });
-  });
-  function doLogin(login, callback) {
-    // make an ajax request to the server to save the calories information
-    $.ajax({
-      type: "POST",
-      url: "user_login",
-      data: JSON.stringify(login),
-      success: function(json) {
-        //console.log(JSON.stringify(json));
-        if (!json.success) {
-          callback(json.message);
-        } else {
-          callback();
+
+    function doLogin(email, password, callback) {
+      // make an ajax request to the server to save the calories information
+      $.ajax({
+        type: "POST",
+        url: "user_login",
+        data: JSON.stringify(email, password),
+        success: function(json) {
+          //console.log(JSON.stringify(json));
+          if (!json.success) {
+            callback(json.message);
+          } else {
+            callback();
+          }
+        },
+        error: function(textStatus, errorThrown) {
+          callback("Request failed");
         }
-      },
-      error: function(textStatus, errorThrown) {
-        callback("Request failed");
-      }
-    });
-  }
+      });
+    }
+
   </script>
+
 
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->

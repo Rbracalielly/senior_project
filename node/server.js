@@ -112,38 +112,41 @@ function userLogin(req, res) {
         return;
       }
       // query the database
-			console.log(injson);
-      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.userEmail, injson.userPassword], function(err, rows, fields) { // build json result object
-				if (err) {
-	console.log(err);
-}
-				var outjson = {};
-				if (err) {
+      console.log(injson);
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.email, injson.password], function(err, rows, fields) {
+        //// DEBUG
+				//not seeing this in the console
+        console.log("TEST" + injson.email);
+        if (err) {
+          console.log(err);
+        }
+        var outjson = {};
+        if (err) {
           // query failed
           outjson.success = false;
           outjson.message = "Query failed: " + err;
-        }
-        else {
-        if (rows.length > 0) {
+          console.log("Login failed " + err);
+
+        } else {
+          (rows.length > 0)
           //debugging
-          console.log("Test:" + results);
+          console.log("Test:" + rows);
           //end debugging
+          outjson.success = true;
+          outjson.message = 'Login Successful!'
           console.log("Login success!");
           // ... and navigate to other page
-
           location = "/userinformationpage.html"
-        } else {
-          console.log("Login failed " + err);
         }
-      }
-      // return json object that contains the result of the query
-      sendResponse(req, res);
-    })
-    conn.end();
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      })
+      conn.end();
 
+    });
   });
-});
 }
+
 
 
 
