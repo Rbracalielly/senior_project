@@ -93,10 +93,8 @@ function sendResponse(req, res, data) {
 }
 
 function userLogin(req, res) {
-	//debugging
-	console.log("Test:" + results);
   var body = "";
-  req.on("data", function (data) {
+  req.on("data", function(data) {
     body += data;
     // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
     if (body.length > 1e6) {
@@ -104,7 +102,7 @@ function userLogin(req, res) {
       req.connection.destroy();
     }
   });
-  req.on("end", function () {
+  req.on("end", function() {
     var injson = JSON.parse(body);
     var conn = mysql.createConnection(credentials.connection);
     // connect to database
@@ -114,32 +112,26 @@ function userLogin(req, res) {
         return;
       }
       // query the database
-		if (userEmail && userPassword)  {
-      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, rows, fields) {        // build json result object
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, results, fields) { // build json result object
         var outjson = {};
-				if (results.length > 0) {
-					//debugging
-					console.log("Test:" + results);
-					//end debugging
-					alert("Login success!");
+        if (results.length > 0) {
+          //debugging
+          console.log("Test:" + results);
+          //end debugging
+          console.log("Login success!");
           // ... and navigate to other page
 
           location = "/userinformationpage.html"
-				}
-				else {
-					alert("Login failed " + err);
-				}
-			})
-        // return json object that contains the result of the query
-        sendResponse(req, res, outjson);
-      }
-			else {
-				alert('Please enter Email and Password')
-			}
-      conn.end();
+        } else {
+          console.log("Login failed " + err);
+        }
+      })
+      // return json object that contains the result of the query
+      sendResponse(req, res);
+    })
+    conn.end();
 
-    });
-});
+  });
 }
 
 
