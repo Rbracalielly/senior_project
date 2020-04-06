@@ -12,10 +12,10 @@ http.createServer(function(req, res) {
       users(req, res);
     }
 		else if (path === "/user_login") {
-      userinformation(req, res);
+      userLogin(req, res);
 		}
     else if (path === "/userinformation") {
-      userLogin(req, res);
+      userinformation(req, res);
     }
     else if (path === "/userdailycalorieintake") {
       userdailycalorieintake(req, res);
@@ -93,6 +93,8 @@ function sendResponse(req, res, data) {
 }
 
 function userLogin(req, res) {
+	//debugging
+	console.log("Test:" + results);
   var body = "";
   req.on("data", function (data) {
     body += data;
@@ -115,9 +117,10 @@ function userLogin(req, res) {
 		if (userEmail && userPassword)  {
       conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", function(err, rows, fields) {        // build json result object
         var outjson = {};
-
-/// i'm here!
 				if (results.length > 0) {
+					//debugging
+					console.log("Test:" + results);
+					//end debugging
 					alert("Login success!");
           // ... and navigate to other page
 
@@ -127,12 +130,14 @@ function userLogin(req, res) {
 					alert("Login failed " + err);
 				}
 			})
-
-
         // return json object that contains the result of the query
         sendResponse(req, res, outjson);
       }
+			else {
+				alert('Please enter Email and Password')
+			}
       conn.end();
+
     });
 });
 }
