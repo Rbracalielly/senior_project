@@ -399,23 +399,19 @@ function addNewUser(req, res) {
 }
 
 function userReport(req, res) {
-  var body = "";
-  req.on("data", function (data) {
-    body += data;
-    if (body.length > 1e6) {
-      req.connection.destroy();
-    }
-  });
-  req.on("end", function() {
-    var injson = JSON.parse(body);
     var conn = mysql.createConnection(credentials.connection);
     conn.connect(function(err) {
       if (err) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      console.log(injson);
-      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [1,injson.userReport[0], injson.userReport[1]], function(err, rows, fields) {
+      var parms = qs.parse(req.url.split("?")[1] || "");
+      console.log(req.url);
+      console.log(parms.userid);
+      console.log(parms.start_date);
+      console.log(parms.end_date);
+      console.log(parms);
+      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [parms.userid,parms.start_date,parms.end_date], function(err, rows, fields) {
         var outjson = {};
         if (err) {
           outjson.success = false;
@@ -432,7 +428,6 @@ function userReport(req, res) {
       });
       conn.end();
     });
-  });
 }
 
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
