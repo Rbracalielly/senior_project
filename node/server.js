@@ -112,11 +112,10 @@ function userLogin(req, res) {
         return;
       }
       // query the database
-      console.log(injson);
+      //console.log(injson);
       conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.email, injson.password], function(err, rows, fields) {
         //// DEBUG
-				//not seeing this in the console
-        console.log("TEST" + injson.email);
+        //not seeing this in the console
         if (err) {
           console.log(err);
         }
@@ -126,26 +125,29 @@ function userLogin(req, res) {
           outjson.success = false;
           outjson.message = "Query failed: " + err;
           console.log("Login failed " + err);
-
         } else {
-          (rows.length > 0)
-          //debugging
-          console.log("Test:" + rows);
-          //end debugging
-          outjson.success = true;
-          outjson.message = 'Login Successful!'
-          console.log("Login success!");
-          // ... and navigate to other page
-          location = "/userinformationpage.html"
+          if (rows.length > 0) {
+            //debugging
+            console.log("Test:" + rows);
+            outjson.success = true;
+            outjson.message = 'Login Successful!'
+            console.log("Login success!");
+            // ... and navigate to other page
+            location = "/userinformationpage.html"
+          } else {
+						outjson.success = false;
+						outjson.message = 'Login Failed!'
+						console.log("Login Failed!");
+					}
         }
         // return json object that contains the result of the query
         sendResponse(req, res, outjson);
       })
       conn.end();
-
     });
   });
 }
+
 
 
 

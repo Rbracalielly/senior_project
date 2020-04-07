@@ -83,7 +83,7 @@
         var email = document.getElementById("userEmail").value;
         var password = document.getElementById("userPassword").value;
         //debugging
-        console.log("test: " + email);
+        console.log("test: " + password);
         doLogin({ // this is the input (first argument of doLogin)
           email: email,
           password: password
@@ -101,28 +101,27 @@
       });
     });
 
-    function doLogin(email, password, callback) {
-      // make an ajax request to the server to save the calories information
-      $.ajax({
-        type: "POST",
-        url: "user_login",
-        data: JSON.stringify(email, password),
-        success: function(json) {
-          //console.log(JSON.stringify(json));
-          if (!json.success) {
-            callback(json.message);
-          } else {
-            callback();
-          }
-        },
-        error: function(textStatus, errorThrown) {
-          callback("Request failed");
+    function doLogin(input, callback) {
+      console.log("test");
+          // make an ajax request to the server to save the calories information
+          $.ajax({
+            type: "POST",
+            url: "user_login",
+            data: JSON.stringify(input),
+            success: function(json) {
+              //console.log(JSON.stringify(json));
+              if (!json.success) {
+                callback(json.message);
+              } else {
+                callback();
+              }
+            },
+            error: function(textStatus, errorThrown) {
+              callback("Request failed");
+            }
+          });
         }
-      });
-    }
-
   </script>
-
 
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
