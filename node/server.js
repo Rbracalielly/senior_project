@@ -88,6 +88,64 @@ function sendResponse(req, res, data) {
   res.end(JSON.stringify(data));
 }
 
+
+
+function userLogin(req, res) {
+  var body = "";
+  req.on("data", function(data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      // query the database
+      //console.log(injson);
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.email, injson.password], function(err, rows, fields) {
+        //// DEBUG
+        //not seeing this in the console
+        if (err) {
+          console.log(err);
+        }
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+          console.log("Login failed " + err);
+        } else {
+          if (rows.length > 0) {
+            //debugging
+            console.log("Test:" + rows);
+            outjson.success = true;
+            outjson.message = 'Login Successful!'
+            console.log("Login success!");
+            // ... and navigate to other page
+            location = "/userinformationpage.html"
+          } else {
+						outjson.success = false;
+						outjson.message = 'Login Failed!'
+						console.log("Login Failed!");
+					}
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      })
+      conn.end();
+    });
+  });
+}
+
 function users(req, res) {
   var conn = mysql.createConnection(credentials.connection);
   // connect to database
