@@ -195,14 +195,45 @@
       });
       $("#total_water_sum").html(sum.toFixed(0));
     }
+  </script>
 
+  <script>
+  $(document).ready(function() {
+     $("#user_report_dates_submit").click(function(){
+      function showUserData() {
+       $("#usersReportData").empty();
+       $("#usersReportData").append("Loading data ...");
+       $.ajax({
+         type: "GET",
+         url: "user_report?userid=" + 1 + "&start_date=" + $("#user_report_date_0").val() + "&end_date=" + $("#user_report_date_1").val(),
+         success: function(json) {
+           console.log(JSON.stringify(json));
+           if (!json.success) {
+
+           }
+           else {
+             $("#usersReportData").empty();
+             var rows = json.data;
+             for (var i = 0; i < rows.length; i++) {
+               $("#usersReportData").append("Calories: " + rows[i].Calories + ", " + "Meal Description: " + rows[i].Description + ", " + "Meal Date: " + rows[i].Date + "<br>");
+
+             }
+           }
+         },
+         error: function (textStatus, errorThrown) {
+           alert("Request failed!");
+           console.log("error");
+         }
+       });
+     }
+     showUserData();
+   });
+  });
   </script>
 
   <body>
     <!--User Informaton-->
     <h3>User Infomation</h3>
-
-
 
 
     <!--Caloric Intake-->
@@ -399,6 +430,22 @@
       </tr>
   </table>
     <input type="submit" value="Submit User Water Intake" id="user_submit_water_button">
+
+  <table>
+    <tr>
+      <td>
+      </b>
+      <label>User Reporting:</label><br>
+      <label for="confirm"><b>Report Start Date (Example: 2008-01-01)</b></label>
+      <input type="text" placeholder="Report Start End" name="user_start_date" id = "user_report_date_0" required>
+      <label for="confirm"><b>Report End Date (Example: 2008-01-05)</b></label>
+      <input type="text" placeholder="Report End Date" name="user_start_end" id = "user_report_date_1" required>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Submit Dates For Report" id="user_report_dates_submit">
+
+  <div id="usersReportData"></div>
 
 
   </body>

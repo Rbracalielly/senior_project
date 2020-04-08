@@ -7,120 +7,35 @@
 
 </head>
 
+<style>
 
-
-<script>
-  $("#signin_user_login").click(function() {
-    // get email and password
-    var email = document.getElementById("userEmail").value;
-    var password = document.getElementById("userPassword").value;
-    doLogin({ // this is the input (first argument of doLogin)
-      email: email,
-      password: password
-    }, function(err) { // this is the callback (second argument of doLogin)
-      // this function gets called after the ajax request completes
-      if (err) {
-        alert("Login failed " + err);
-      }
-      else {
-        alert("Login success!");
-        // ... and navigate to other page
-
-        location = 'https://www.caloriecalculator.com/user_profile'
-      }
-    });
-  });
-  function doLogin(input, callback) {
-    // for now, we simulate the ajax request and add 100ms delay
-    setTimeout(function() {
-      if (Math.random() < 0.1) {
-        // simulate failure 10% of the time
-        callback("Invalid username and/or password");
-      }
-      else {
-        // success 90% of the time
-        callback();
-      }
-    }, 100);
-  }
-</script>
-
-<script>
-// capture when the user clicks the daily caloric intake button
-$(document).ready(function(){
-$("#user_account_creation").click(function() {
-  //debuging
-  console.log("test");
-  // get daily calories
-  var userCreationInfo = [];
-  // we need to loop because there are multiple rows in the table
-
-  for (var i = 0; i < 17; i++) {
-    userCreationInfo.push($("#user_information_" + i).val());
-  }
-
-  addUserCreationInfo({ // this is the input (first argument of userCreationInfo)
-    userCreationInfo
-
-  }, function(err) { // this is the callback (second argument of userCreationInfo)
-    // this function gets called after the ajax request completes
-    if (err) {
-      alert("Adding user failed: " + err);
-    }
-    else {
-      alert("Added user!");
-      // ... and navigate to other page
-			//not sure where to nav to here?
-			//id assume the best place would be the user information page again
-    }
-  });
-  return false;
-});
-});
-function addUserCreationInfo(userCreationInfo, callback) {
-  // make an ajax request to the server to save the calories information
-  $.ajax({
-    type: "POST",
-    url: "add_new_user",
-    data: JSON.stringify(userCreationInfo),
-    success: function(json) {
-      //console.log(JSON.stringify(json));
-      if (!json.success) {
-        callback(json.message);
-      }
-      else {
-        callback();
-      }
-    },
-    error: function (textStatus, errorThrown) {
-       callback("Request failed");
-    }
-  });
+.hide_show_create_account_information {
+  display: none;
 }
 
-</script>
+</style>
+
 
 <script>
 
-//Function to Hide and Show the sign-up form.
-$(document).ready(function() {
-var Target = document.getElementById('show_create_account');
+	  //Function to Hide and Show the sign-up form.
+	  $(document).ready(function() {
+	  var Target = document.getElementById('show_create_account');
 
-$("#user_account_creation").click(function() {
-  Target.style.display = 'block';
-});
+		$("#user_account_creation").click(function() {
+		  Target.style.display = 'block';
+		});
 
-$("#cancel_user_account_creation").click(function() {
-  Target.style.display = 'none';
-});
+		$("#cancel_user_account_creation").click(function() {
+		  Target.style.display = 'none';
+		});
 
 
-$("#cancel_user_login").click(function() {
-  history.go(-1);
-});
+		$("#cancel_user_login").click(function() {
+		  history.go(-1);
+		});
 
-});
-
+	  });
 
 </script>
 
@@ -131,7 +46,7 @@ $("#cancel_user_login").click(function() {
   <!-- Start -->
   <tr>
     <td>
-	  <form class="form-signin">
+
 		<img class="mb-4" src="https://i.postimg.cc/Z5cWLm0z/avatar-png-transparent-4.png" alt="" width="72" height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
 
@@ -152,27 +67,84 @@ $("#cancel_user_login").click(function() {
 		</div>
 
     <!-- User Sign In Or Canels Login -->
-    <input type="submit" value="Log In" id="userLogIn">
+		<button class="btn btn-lg btn-primary btn-block" type="submit" id="signin_user_login">Sign in</button>
+		<button class="btn btn-lg btn-primary btn-block" type="reset" id="cancel_user_login">Cancel</button>
 
-
-	  </form>
 	  </td>
   </tr>
-  </table>
   <!-- End -->
+
+
+  <script>
+    // signin using credintials in server
+    $(document).ready(function() {
+      $("#signin_user_login").click(function() {
+
+        var email = document.getElementById("userEmail").value;
+        var password = document.getElementById("userPassword").value;
+        //debugging
+        console.log("test: " + password);
+        doLogin({ // this is the input (first argument of doLogin)
+          email: email,
+          password: password
+        }, function(err) { // this is the callback (second argument of doLogin)
+          // this function gets called after the ajax request completes
+          if (err) {
+            alert("Login failed: " + err);
+          } else {
+            alert("Login success!");
+            // ... and navigate to other page
+
+            location = "/userinformationpage.html"
+          }
+        });
+      });
+    });
+
+    function doLogin(input, callback) {
+      console.log("test");
+          // make an ajax request to the server to save the calories information
+          $.ajax({
+            type: "POST",
+            url: "user_login",
+            data: JSON.stringify(input),
+            success: function(json) {
+              //console.log(JSON.stringify(json));
+              if (!json.success) {
+                callback(json.message);
+              } else {
+                callback();
+              }
+            },
+            error: function(textStatus, errorThrown) {
+              callback("Request failed");
+            }
+          });
+        }
+  </script>
+
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
+  <!-- Start -->
+  <tr>
+    <td>
+	  <div>
+		<button id="user_account_creation">Create Account</button>
+	  </div>
+	 </td>
+  </tr>
+  <!-- End -->
 
   <!-- Start -->
   <tr>
 	 <td>
 	  <div class="hide_show_create_account_information" id="show_create_account">
-		<table id="userInformationTabe">
+		<table id="pmt_interest">
     <tr>
 		<td>
 		<label for="email"><b>User Name</b></label>
-		<input type="text" placeholder="User Name" name="userName" id = "user_information_0"required>
+		<input type="text" placeholder="User Name" name="userName" required>
 	 </td>
   </tr>
 
@@ -181,7 +153,7 @@ $("#cancel_user_login").click(function() {
 	<tr>
 	  <td>
 		<label for="email"><b>Email</b></label>
-		<input type="text" placeholder="Enter Email" name="userEmail" id = "user_information_1" required>
+		<input type="text" placeholder="Enter Email" name="userEmail" required>
 	  </td>
   </tr>
   <!-- End -->
@@ -190,7 +162,7 @@ $("#cancel_user_login").click(function() {
   <tr>
 		<td>
     <label for="confirm"><b>Password</b></label>
-		<input type="password" placeholder="Enter Password" name="userPassword" id = "user_information_2" required>
+		<input type="password" placeholder="Enter Password" name="userPassword" required>
 		</td>
   </tr>
   <!-- End -->
@@ -199,7 +171,7 @@ $("#cancel_user_login").click(function() {
   <tr>
 		<td>
     <label for="confirm"><b>Secret Question</b></label>
-		<input type="text" placeholder="Enter A Question" name="userSecretQuestion" id = "user_information_3" required>
+		<input type="text" placeholder="Enter A Question" name="userSecretQuestion" required>
 		</td>
   </tr>
   <!-- End -->
@@ -208,7 +180,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>Secret Question Answer</b></label>
-    <input type="text" placeholder="Enter An Answeer To The Above Question" name="userAnswer" id = "user_information_4" required>
+    <input type="text" placeholder="Enter An Answeer To The Above Question" name="userAnswer" required>
     </td>
   </tr>
   <!-- End -->
@@ -217,7 +189,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>Steet Address</b></label>
-    <input type="text" placeholder="Enter Street Address" name="UserStreetAddress" id = "user_information_5" required>
+    <input type="text" placeholder="Enter Street Address" name="UserStreetAddress" required>
     </td>
   </tr>
   <!-- End -->
@@ -226,7 +198,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>City</b></label>
-    <input type="text" placeholder="Enter City" name="userCity" id = "user_information_6" required>
+    <input type="text" placeholder="Enter City" name="userCity" required>
     </td>
   </tr>
   <!-- End -->
@@ -235,7 +207,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>State</b></label>
-    <input type="text" placeholder="Enter State" name="userState" id = "user_information_7" required>
+    <input type="text" placeholder="Enter State" name="userState" required>
     </td>
   </tr>
   <!-- End -->
@@ -244,7 +216,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>Zip</b></label>
-    <input type="text" placeholder="Enter Zip" name="userZip" id = "user_information_8" required>
+    <input type="text" placeholder="Enter Zip" name="userZip" required>
     </td>
   </tr>
   <!-- End -->
@@ -252,36 +224,30 @@ $("#cancel_user_login").click(function() {
   <!-- Start -->
   <tr>
     <td>
-    <label for="confirm"><b>Date of Birth (Example: 1991-04-13)</b></label>
-    <input type="text" placeholder="Enter DOB" name="userDateOfBirth" id = "user_information_9" required>
+    <label for="confirm"><b>Date of Birth</b></label>
+    <input type="text" placeholder="Enter DOB" name="userDateOfBirth" required>
     </td>
   </tr>
   <!-- End -->
 
   <!-- Start -->
-
-
   <tr>
     <td>
-      <label>Gender:</label><br>
-      <input type="radio" id="user_information_10" name="gender" value="M">
+      <input type="radio" id="male" name="gender" value="male">
     	<label for="male">Male</label><br>
-    	<input type="radio" id="user_information_10" name="gender" value="F">
+    	<input type="radio" id="female" name="gender" value="female">
     	<label for="female">Female</label><br>
-    	<input type="radio" id="user_information_10" name="gender" value="O">
+    	<input type="radio" id="other" name="gender" value="other">
     	<label for="other">Other</label><br><br>
     </td>
   </tr>
-
-
-
   <!-- End -->
 
   <!-- Start -->
   <tr>
     <td>
     <label for="confirm"><b>BMI</b></label>
-    <input type="text" placeholder="Enter BMI" name="userBMI" id = "user_information_11" required>
+    <input type="text" placeholder="Enter BMI" name="userBMI" required>
     </td>
   </tr>
   <!-- End -->
@@ -290,7 +256,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>Weight</b></label>
-    <input type="text" placeholder="Enter Weight" name="userWeight" id = "user_information_12" required>
+    <input type="password" placeholder="Enter Weight" name="userWeight" required>
     </td>
   </tr>
   <!-- End -->
@@ -299,7 +265,7 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
       <label for="confirm"><b>Height (In Inches)</b></label>
-      <input type="text" placeholder="Enter Height" name="userHeight" id = "user_information_13"  required>
+      <input type="password" placeholder="Enter Height" name="userHeight" required>
     </td>
   </tr>
   <!-- End -->
@@ -308,25 +274,22 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
       <label>Exercise Level:</label><br>
-      <input type="radio" id="user_information_14" name="exercise" value="Light: Exercise 1-3 times/week">
-    	<label for="Light: Exercise 1-3 times/week">Light: Exercise 1-3 times/week</label><br>
-    	<input type="radio" id="user_information_14" name="exercise" value="Moderate: Exercise 4-5 times/week">
-    	<label for="Moderate: Exercise 4-5 times/week<">Moderate: Exercise 4-5 times/week</label><br>
-    	<input type="radio" id="user_information_14" name="exercise" value="Active: Daily exercise or intens excercise 3-4 times/week">
-    	<label for="Active: Daily exercise or intens excercise 3-4 times/week">Active: Daily exercise or intens excercise 3-4 times/week</label><br><br>
+    	<div class="custom-select" style="width:200px;" id = "exerciseLevel">
+    		<select>
+    			<option value="0">Select Level:</option>
+    			<option value="1">Light: Exercise 1-3 times/week</option>
+    			<option value="2">Moderate: Exercise 4-5 times/week</option>
+    			<option value="3">Active: Daily exercise or intens excercise 3-4 times/week</option>
+    	</select>
     </td>
   </tr>
-
-
-
-
   <!-- End -->
 
   <!-- Start -->
   <tr>
     <td>
     <label for="confirm"><b>Calorie Limit</b></label>
-    <input type="text" placeholder="Enter Calorie Limit" name="userCalorieLimit" id = "user_information_15"  required>
+    <input type="text" placeholder="Enter Calorie Limit" name="userCalorieLimit" required>
     </td>
   </tr>
   <!-- End -->
@@ -335,9 +298,20 @@ $("#cancel_user_login").click(function() {
   <tr>
     <td>
     <label for="confirm"><b>Calorie Goal</b></label>
-    <input type="text" placeholder="Enter Calorie Goal" name="userCalorieGoal" id = "user_information_16"  required>
+    <input type="text" placeholder="Enter Calorie Goal" name="userCalorieGoal" required>
     </td>
   </tr>
+  <!-- End -->
+
+
+
+  <!-- Start -->
+  <tr>
+		<td>
+    <button type="submit" class="sign_up_user">Sign Up</button>
+		<button type="button" class="cancel_sign_up_user" id="cancel_user_account_creation">Cancel</button>
+		</td>
+	</tr>
   <!-- End -->
 
 	</table>
@@ -345,9 +319,9 @@ $("#cancel_user_login").click(function() {
 	</td>
   </tr>
 <!-- End -->
-<input type="submit" value="Submit User Info" id="user_account_creation">
 
-
+</table>
+<!-- Finish Table -->
 
 </body>
 </html>
