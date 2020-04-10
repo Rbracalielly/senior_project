@@ -55,44 +55,6 @@
       }
 </script>
 
-
-
-<script>
-  $("#signin_user_login").click(function() {
-    // get email and password
-    var email = document.getElementById("userEmail").value;
-    var password = document.getElementById("userPassword").value;
-    doLogin({ // this is the input (first argument of doLogin)
-      email: email,
-      password: password
-    }, function(err) { // this is the callback (second argument of doLogin)
-      // this function gets called after the ajax request completes
-      if (err) {
-        alert("Login failed " + err);
-      }
-      else {
-        alert("Login success!");
-        // ... and navigate to other page
-
-        location = 'https://www.caloriecalculator.com/user_profile'
-      }
-    });
-  });
-  function doLogin(input, callback) {
-    // for now, we simulate the ajax request and add 100ms delay
-    setTimeout(function() {
-      if (Math.random() < 0.1) {
-        // simulate failure 10% of the time
-        callback("Invalid username and/or password");
-      }
-      else {
-        // success 90% of the time
-        callback();
-      }
-    }, 100);
-  }
-</script>
-
 <script>
 // capture when the user clicks the daily caloric intake button
 $(document).ready(function(){

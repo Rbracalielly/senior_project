@@ -13,6 +13,9 @@ http.createServer(function(req, res) {
     if (path === "/users") {
       users(req, res);
     }
+    else if (path === "/user_login") {
+      userLogin(req, res);
+		}
     else if (path === "/userinformation") {
       userinformation(req, res);
     }
@@ -130,6 +133,7 @@ function userLogin(req, res) {
           if (rows.length > 0) {
             var cookies = new Cookies(req, res, { keys: keys });
             cookies.set('UserID', rows[0].userID, { signed: true });
+            console.log(rows[0]);
             //debugging
             console.log("Test:" + rows);
             outjson.success = true;
@@ -411,11 +415,14 @@ function userReport(req, res) {
       var parms = qs.parse(req.url.split("?")[1] || "");
       var cookies = new Cookies(req, res, { keys: keys });
       var userId = cookies.get('UserID');
+
       console.log(req.url);
       console.log(parms.start_date);
       console.log(parms.end_date);
       console.log(parms);
+      console.log(userId);
       conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [userId,parms.start_date,parms.end_date], function(err, rows, fields) {
+
         var outjson = {};
         if (err) {
           outjson.success = false;
