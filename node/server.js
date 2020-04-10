@@ -3,6 +3,9 @@ var fs = require("fs");
 var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
+var keys = ['bla boo bla'];
+var Cookies = require("cookies");
+var http = require('http');
 
 http.createServer(function(req, res) {
   try {
@@ -10,6 +13,9 @@ http.createServer(function(req, res) {
     if (path === "/users") {
       users(req, res);
     }
+    else if (path === "/user_login") {
+      userLogin(req, res);
+		}
     else if (path === "/userinformation") {
       userinformation(req, res);
     }
@@ -125,6 +131,9 @@ function userLogin(req, res) {
           console.log("Login failed " + err);
         } else {
           if (rows.length > 0) {
+            var cookies = new Cookies(req, res, { keys: keys });
+            cookies.set('UserID', rows[0].userID, { signed: true });
+            console.log(rows[0]);
             //debugging
             console.log("Test:" + rows);
             outjson.success = true;
@@ -291,13 +300,16 @@ function addMeal(req, res) {
     var injson = JSON.parse(body);
     var conn = mysql.createConnection(credentials.connection);
     // connect to database
+
     conn.connect(function(err) {
       if (err) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
+      var cookies = new Cookies(req, res, { keys: keys });
+      var userId = cookies.get('UserID');
       // query the database
-      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)", [1,injson.meals[0].calories, injson.meals[0].description], function(err, rows, fields) {        // build json result object
+      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)", [userId,injson.meals[0].calories, injson.meals[0].description], function(err, rows, fields) {        // build json result object
         var outjson = {};
         if (err) {
           // query failed
@@ -333,7 +345,9 @@ function addDrink(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[1,injson.water[0].calories, injson.water[0].description], function(err, rows, fields) {
+      var cookies = new Cookies(req, res, { keys: keys });
+      var userId = cookies.get('UserID');
+      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[userId,injson.water[0].calories, injson.water[0].description], function(err, rows, fields) {
         var outjson = {};
         if (err) {
           outjson.success = false;
@@ -399,12 +413,16 @@ function userReport(req, res) {
         return;
       }
       var parms = qs.parse(req.url.split("?")[1] || "");
+      var cookies = new Cookies(req, res, { keys: keys });
+      var userId = cookies.get('UserID');
+
       console.log(req.url);
-      console.log(parms.userid);
       console.log(parms.start_date);
       console.log(parms.end_date);
       console.log(parms);
-      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [parms.userid,parms.start_date,parms.end_date], function(err, rows, fields) {
+      console.log(userId);
+      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [userId,parms.start_date,parms.end_date], function(err, rows, fields) {
+
         var outjson = {};
         if (err) {
           outjson.success = false;
