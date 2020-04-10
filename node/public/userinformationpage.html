@@ -205,7 +205,7 @@
        $("#usersReportData").append("Loading data ...");
        $.ajax({
          type: "GET",
-         url: "user_report?userid=" + 1 + "&start_date=" + $("#user_report_date_0").val() + "&end_date=" + $("#user_report_date_1").val(),
+         url: "user_report?userid=" +userId+ "&start_date=" + $("#user_report_date_0").val() + "&end_date=" + $("#user_report_date_1").val(),
          success: function(json) {
            console.log(JSON.stringify(json));
            if (!json.success) {
