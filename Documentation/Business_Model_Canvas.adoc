@@ -70,5 +70,37 @@ Technical {nbsp} +
 - Development {nbsp} +
 - Website maintenance {nbsp} +
 
+
+## Beta User Feedback
+Ryan Bracalielly {nbsp} +
+3 beta users review and offer feedback on the applicaiton 4/11/2020 {nbsp} +
+Hypothesis was was the user would sign in, add calories, and use reports to get feedback. {nbsp} +
+User 1 - Tim {nbsp} +
+- Sign up page should clear user or auto sign in upon creating new user {nbsp} +
+- Calorie Limit and Calorie Gaol needs defined {nbsp} +
+- Need to remove browser alerts with error messages to be seen by users {nbsp} +
+- Use a dynamically expanding table for meals and drinks {nbsp} +
+- Better definitions across the board {nbsp} + 
+- Bootstrapping for mobile devices {nbsp} + 
+- Premise is sound as a base idea {nbsp} + 
+User 2 - Chris {nbsp} +
+- Need to remove browser alerts with error messages to be seen by users {nbsp} +
+- Should be using SSL {nbsp} +
+- Asked if passwords are plain text or encrypted in some in MySQL. Advised, if not, that should be implemented. {nbsp} +
+- More reporting options for daily, weekly, and monthly {nbsp} +
+- Calorie Limit and Calorie Gaol needs defined {nbsp} +
+- Advised reviewing the layout for hydration level, found it confusing {nbsp} + 
+- Should have more data validation done for various fields {nbsp} +
+User 3 - Lawerence {nbsp} +
+- Need to remove browser alerts with error messages to be seen by users {nbsp} +
+- More reporting options for daily, weekly, and monthly {nbsp} +
+- Add reporting to advise the user to show trends for under-eating and overeating {nbsp} +
+- Sign up page should clear user or auto sign in upon creating new user {nbsp} +
+- Advised reviewing the layout for hydration level, found it confusing {nbsp} + 
+- Calorie Limit and Calorie Gaol needs defined {nbsp} +
+
+
 ## Document History
 - Ryan Bracalielly created version 1.0 3/5/2020 at 11:49 PM EST
+- Ryan Bracalielly created version 1.1 4/11/2020 at 2:00 PM EST
+
