@@ -70,6 +70,7 @@ Technical {nbsp} +
 - Development {nbsp} +
 - Website maintenance {nbsp} +
 
+-------------------------------------------------
 
 ## Beta User Feedback
 Ryan Bracalielly {nbsp} +
@@ -99,6 +100,8 @@ User 3 - Lawerence {nbsp} +
 - Advised reviewing the layout for hydration level, found it confusing {nbsp} +
 - Calorie Limit and Calorie Gaol needs defined {nbsp} +
 
+-------------------------------------------------------------
+
 Eric Roland {nbsp} +
 User - Laura {nbsp} +
 - Need guidance on what calorie limit should be, and what goal should be for me {nbsp} +
@@ -113,6 +116,24 @@ User - Brian {nbsp} +
 - After I add meals, the form should be cleared {nbsp} +
 - Give me warning when I'm going over my calorie intake. {nbsp} +
 - Do not like the click alert when I login. {nbsp} +
+
+-----------------------------------------------------------
+
+Connor Feals
+User - Tyler userID 23
+- Landing Page Feedback
+  - Looks like an image was supposed to be at the top of page, it is 404
+  - Lots of info at once.  Could just show a login for existing users and then have a sign up link for new users.  Click sign up            and then all the other fields could come in
+  - Why do you need a user name if the login just uses email address?
+  - Password confirmation field might be good idea
+  - If you ask for height and weight first can't you just calculate BMI?
+  - If you re-work landing page to be sign on and then separate link, on new user info submission you can navigate back to the regular landing page so new user can login
+- User Information Feedback
+  - Image at top of this page is 404 also
+  - Similar feedback as above, might be nice to reduce the info presented at once.  Could have a page with jump points to 'Calorie Tracking', 'Daily Hydration', and then 'Reporting'
+  - Added calories for 3 meals and saved, appears to work
+  - Date picker control for the reports would be nice
+  - Clicked 'Submit Dates For Report' and quickly blinks what I think says 'Loading Data' but that disappears and no report
 
 
 ## Document History
