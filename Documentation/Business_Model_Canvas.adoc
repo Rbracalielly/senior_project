@@ -134,6 +134,21 @@ User - Tyler userID 23
   - Added calories for 3 meals and saved, appears to work
   - Date picker control for the reports would be nice
   - Clicked 'Submit Dates For Report' and quickly blinks what I think says 'Loading Data' but that disappears and no report
+  
+User - Dennis userID 25
+  - Overall Functionality
+    - General:  Pictures not showing up (Google Chrome on web or mobile).  Get a broken link icon
+    - Login page:  Due to the layout of the screen, it’s tough for a new user to figure out where to start.  Visual layout on login page should make it clearer that it’s EITHER/OR on sign in or sign up
+    - General:  Form field validation should be done on field exit rather than on submit, OR when submitting instead of an alert the focus should go to the field(s) that failed validation with visual cues (color coding)
+    - User information page:  Reporting did not work for me even after submitting several caloric intake and hydration forms
+    - User information page:  Once submitted, form should clear and daily values should be displayed with option to edit previous or add new to existing
+    - Functionality is good overall, UX is more basic than I’d like
+  - Usage
+    - Would be good to use to track consumption behavior with end result being behavior modification.  
+  - Overall Suggestions
+    - Obviously this is a prototype and my suggestions are more for an end product, but the app should look/feel different on a mobile device than on the web.  Buttons and functionality should work on all browsers and OS’s.
+    - Show the end user how to calculate values that aren’t intuitive (like BMI) with help text
+    - Javascript alerts are 1999.  :-)
 
 
 ## Document History
