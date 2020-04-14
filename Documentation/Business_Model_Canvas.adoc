@@ -70,6 +70,7 @@ Technical {nbsp} +
 - Development {nbsp} +
 - Website maintenance {nbsp} +
 
+-------------------------------------------------
 
 ## Beta User Feedback
 Ryan Bracalielly {nbsp} +
@@ -80,27 +81,77 @@ User 1 - Tim {nbsp} +
 - Calorie Limit and Calorie Gaol needs defined {nbsp} +
 - Need to remove browser alerts with error messages to be seen by users {nbsp} +
 - Use a dynamically expanding table for meals and drinks {nbsp} +
-- Better definitions across the board {nbsp} + 
-- Bootstrapping for mobile devices {nbsp} + 
-- Premise is sound as a base idea {nbsp} + 
+- Better definitions across the board {nbsp} +
+- Bootstrapping for mobile devices {nbsp} +
+- Premise is sound as a base idea {nbsp} +
 User 2 - Chris {nbsp} +
 - Need to remove browser alerts with error messages to be seen by users {nbsp} +
 - Should be using SSL {nbsp} +
 - Asked if passwords are plain text or encrypted in some in MySQL. Advised, if not, that should be implemented. {nbsp} +
 - More reporting options for daily, weekly, and monthly {nbsp} +
 - Calorie Limit and Calorie Gaol needs defined {nbsp} +
-- Advised reviewing the layout for hydration level, found it confusing {nbsp} + 
+- Advised reviewing the layout for hydration level, found it confusing {nbsp} +
 - Should have more data validation done for various fields {nbsp} +
 User 3 - Lawerence {nbsp} +
 - Need to remove browser alerts with error messages to be seen by users {nbsp} +
 - More reporting options for daily, weekly, and monthly {nbsp} +
 - Add reporting to advise the user to show trends for under-eating and overeating {nbsp} +
 - Sign up page should clear user or auto sign in upon creating new user {nbsp} +
-- Advised reviewing the layout for hydration level, found it confusing {nbsp} + 
+- Advised reviewing the layout for hydration level, found it confusing {nbsp} +
 - Calorie Limit and Calorie Gaol needs defined {nbsp} +
+
+-------------------------------------------------------------
+
+Eric Roland {nbsp} +
+User - Laura {nbsp} +
+- Need guidance on what calorie limit should be, and what goal should be for me {nbsp} +
+- After creating my account I should be auto signed in. {nbsp} +
+- Should be able to add a previous days meals {nbsp} +
+- After sign in, should be able to see where I stand for the day so far {nbsp} +
+- Would be great to have input on how many calories my meal was {nbsp} +
+User - Brian {nbsp} +
+- I don't know what my BMI is, can't this be calculated by height and weight? {nbsp} +
+- I don't know what my calorie limit is? Can this be calculated? {nbsp} +
+- Should be signed in after signing up. {nbsp} +
+- After I add meals, the form should be cleared {nbsp} +
+- Give me warning when I'm going over my calorie intake. {nbsp} +
+- Do not like the click alert when I login. {nbsp} +
+
+-----------------------------------------------------------
+
+Connor Feals
+User - Tyler userID 23
+- Landing Page Feedback
+  - Looks like an image was supposed to be at the top of page, it is 404
+  - Lots of info at once.  Could just show a login for existing users and then have a sign up link for new users.  Click sign up            and then all the other fields could come in
+  - Why do you need a user name if the login just uses email address?
+  - Password confirmation field might be good idea
+  - If you ask for height and weight first can't you just calculate BMI?
+  - If you re-work landing page to be sign on and then separate link, on new user info submission you can navigate back to the regular landing page so new user can login
+- User Information Feedback
+  - Image at top of this page is 404 also
+  - Similar feedback as above, might be nice to reduce the info presented at once.  Could have a page with jump points to 'Calorie Tracking', 'Daily Hydration', and then 'Reporting'
+  - Added calories for 3 meals and saved, appears to work
+  - Date picker control for the reports would be nice
+  - Clicked 'Submit Dates For Report' and quickly blinks what I think says 'Loading Data' but that disappears and no report
+  
+User - Dennis userID 25
+  - Overall Functionality
+    - General:  Pictures not showing up (Google Chrome on web or mobile).  Get a broken link icon
+    - Login page:  Due to the layout of the screen, it’s tough for a new user to figure out where to start.  Visual layout on login page should make it clearer that it’s EITHER/OR on sign in or sign up
+    - General:  Form field validation should be done on field exit rather than on submit, OR when submitting instead of an alert the focus should go to the field(s) that failed validation with visual cues (color coding)
+    - User information page:  Reporting did not work for me even after submitting several caloric intake and hydration forms
+    - User information page:  Once submitted, form should clear and daily values should be displayed with option to edit previous or add new to existing
+    - Functionality is good overall, UX is more basic than I’d like
+  - Usage
+    - Would be good to use to track consumption behavior with end result being behavior modification.  
+  - Overall Suggestions
+    - Obviously this is a prototype and my suggestions are more for an end product, but the app should look/feel different on a mobile device than on the web.  Buttons and functionality should work on all browsers and OS’s.
+    - Show the end user how to calculate values that aren’t intuitive (like BMI) with help text
+    - Javascript alerts are 1999.  :-)
 
 
 ## Document History
 - Ryan Bracalielly created version 1.0 3/5/2020 at 11:49 PM EST
 - Ryan Bracalielly created version 1.1 4/11/2020 at 2:00 PM EST
-
+- Eric Roland created version 1.2 4/11/2020 at 10:00 PM EST
