@@ -3,7 +3,7 @@
 ## What is this document?
 This is a living document where members of the team can add in known issues to the application as well as document new futures that can be added. 
 
-##Current issues 
+##Current issues {nbsp} +
 1.)	Sign page shows a lot of information at once {nbsp} +
 - This can be corrected by hiding the create user option by using a hide function. This way the create user fields is not seen. {nbsp} +
 2.)	User sign in ask for email address rather than username {nbsp} +
@@ -22,7 +22,7 @@ This is a living document where members of the team can add in known issues to t
 8.)	Images not showing  {nbsp} +
  - Need proper file references in jail. {nbsp} +
  
-##Features to add 
+##Features to add {nbsp} +
 1.)	Security {nbsp} +
 - Use SSL {nbsp} +
 - Hashing passwords rather than storing as plain text {nbsp} +
