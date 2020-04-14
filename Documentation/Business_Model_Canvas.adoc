@@ -71,8 +71,8 @@ Technical {nbsp} +
 - Website maintenance {nbsp} +
 
 
-## Beta User Feedback
-Ryan Bracalielly Test Users {nbsp} +
+# Beta User Feedback
+## Ryan Bracalielly Test Users: {nbsp} +
 3 beta users review and offer feedback on the applicaiton 4/11/2020 {nbsp} +
 Hypothesis was was the user would sign in, add calories, and use reports to get feedback. {nbsp} +
 User 1 - Tim {nbsp} +
@@ -100,7 +100,7 @@ User 3 - Lawerence {nbsp} +
 - Calorie Limit and Calorie Gaol needs defined {nbsp} +
 
 
-Eric Roland Test Users {nbsp} +
+## Eric Roland Test Users: {nbsp} +
 User - Laura {nbsp} +
 - Need guidance on what calorie limit should be, and what goal should be for me {nbsp} +
 - After creating my account I should be auto signed in. {nbsp} +
@@ -115,7 +115,7 @@ User - Brian {nbsp} +
 - Give me warning when I'm going over my calorie intake. {nbsp} +
 - Do not like the click alert when I login. {nbsp} +
 
-Connor Feals Test Users {nbsp} +
+## Connor Feals Test Users: {nbsp} +
 User - Tyler userID 23 {nbsp} +
 - Landing Page Feedback {nbsp} +
   - Looks like an image was supposed to be at the top of page, it is 404 {nbsp} +
@@ -147,7 +147,7 @@ User - Dennis userID 25 {nbsp} +
     - Javascript alerts are 1999.  :-) {nbsp} +
 
 
-## Document History
+# Document History
 - Ryan Bracalielly created version 1.0 3/5/2020 at 11:49 PM EST
 - Ryan Bracalielly created version 1.1 4/11/2020 at 2:00 PM EST
 - Eric Roland created version 1.2 4/11/2020 at 10:00 PM EST
