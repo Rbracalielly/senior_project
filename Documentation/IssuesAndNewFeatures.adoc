@@ -1,0 +1,44 @@
+# Issues Doc
+
+## What is this document?
+This is a living document where members of the team can add in known issues to the application as well as document new futures that can be added.
+
+## Current issues {nbsp} +
+1.)	Sign page shows a lot of information at once {nbsp} +
+- This can be corrected by hiding the create user option by using a hide function. This way the create user fields is not seen. {nbsp} +
+2.)	User sign in ask for email address rather than username {nbsp} +
+- We should change this field to use username or just remove username all together {nbsp} +
+3.)	Reports not loading data {nbsp} +
+- This is due when a user submits info for calories or dinks a date time value is not passed through the database. It would best to use a cookie to submit a date time stamp so reports can be added one {nbsp} +
+4.)	Remove java scripts {nbsp} +
+- We should remove the java alerts and code in proper error codes for an end user to see. Make sure proper error codes do not have tables reference names. {nbsp} +
+5.)	Definitions {nbsp} +
+- Better definitions on calorie limit and goals. {nbsp} +
+- Hydration pages table is confusing and could be redefined. {nbsp} +
+6.)	Adding in meals and drinks {nbsp} +
+- Forum should clear after adding in calories {nbsp} +
+7.)	Gender value always passing male {nbsp} +
+ - Work around idea was to use a free box that states something like “Gender (Please Enter M, F, or O)” {nbsp} +
+  - Work around complete. {nbsp} +
+8.)	Images not showing  {nbsp} +
+ - Need proper file references in jail. {nbsp} +
+
+## Features to add {nbsp} +
+1.)	Security {nbsp} +
+- Use SSL {nbsp} +
+- Hashing passwords rather than storing as plain text {nbsp} +
+2.)	Bootstrap {nbsp} +
+- Add in Bootstrap for mobile devices to browse page {nbsp} +
+3.)	Reports {nbsp} +
+- Options for daily, weekly, and monthly {nbsp} +
+- Add option for date picker rather than manual entry {nbsp} +
+4.)	Meals {nbsp} +
+- Add warnings for calorie intake {nbsp} +
+5.)	Account creation {nbsp} +
+- Auto sign in after account created {nbsp} +
+- Password verification field {nbsp} +
+
+
+## Document History
+- Ryan Bracalielly created version 1.0 4/13/2020 at 10:00 PM EST {nbsp} +
+- Eric Roland updated Current Issue 7 4/14/2020 {nbsp} +
