@@ -9,7 +9,7 @@ This is a living document where members of the team can add in known issues to t
 - Ryan added a show/hide function that hides the new user information feilds 4/15/2020 {nbsp} +
 2.)	User sign in ask for email address rather than username {nbsp} +
 - We should change this field to use username or just remove username all together {nbsp} +
-- user sign up page now uses user name rather than email {nbsp} +
+- Ryan changed user sign up page now uses user name rather than email 4/15/2020 {nbsp} +
 3.)	Reports not loading data {nbsp} +
 - This is due when a user submits info for calories or dinks a date time value is not passed through the database. It would best to use a cookie to submit a date time stamp so reports can be added one {nbsp} +
 4.)	Remove java scripts {nbsp} +
