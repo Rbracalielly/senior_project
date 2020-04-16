@@ -117,7 +117,7 @@ function userLogin(req, res) {
       }
       // query the database
       //console.log(injson);
-      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.email, injson.password], function(err, rows, fields) {
+      conn.query("SELECT * FROM userInformation WHERE userName = ? AND userPassword = ?", [injson.userName, injson.password], function(err, rows, fields) {
         //// DEBUG
         //not seeing this in the console
         if (err) {

@@ -12,12 +12,12 @@
   $(document).ready(function() {
     $("#signin_user_login").click(function() {
 
-      var email = document.getElementById("userEmail").value;
+      var userName = document.getElementById("userName").value;
       var password = document.getElementById("userPassword").value;
       //debugging
       console.log("test: " + password);
       doLogin({ // this is the input (first argument of doLogin)
-        email: email,
+        userName: userName,
         password: password
       }, function(err) { // this is the callback (second argument of doLogin)
         // this function gets called after the ajax request completes
@@ -169,8 +169,8 @@ $("#cancel_user_account_creation").click(function() {
 		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
 
     <!-- Enter User Email -->
-		<label for="user_email" class="sr-only">Email address</label>
-		<input type="email" id="userEmail" class="form-control" placeholder="Email address" required autofocus>
+		<label for="user_name" class="sr-only">User Name</label>
+		<input type="text" id="userName" class="form-control" placeholder="User Name" required autofocus>
     <br>
 
     <!-- Enter User Password -->
