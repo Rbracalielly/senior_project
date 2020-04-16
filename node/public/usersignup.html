@@ -116,7 +116,7 @@ function addUserCreationInfo(userCreationInfo, callback) {
 $(document).ready(function() {
 var Target = document.getElementById('show_create_account');
 
-$("#user_account_creation").click(function() {
+$("#click_account_creation").click(function() {
   Target.style.display = 'block';
 });
 
@@ -125,14 +125,19 @@ $("#cancel_user_account_creation").click(function() {
 });
 
 
-$("#cancel_user_login").click(function() {
-  history.go(-1);
-});
-
 });
 
 
 </script>
+
+<style>
+
+.hide_show_create_account_information {
+  display: none;
+}
+
+</style>
+
 
 
 <body>
@@ -190,10 +195,20 @@ $("#cancel_user_login").click(function() {
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
 
+<br>
+<br>
+
+<button id="click_account_creation">Create A New Account</button>
+<button id="cancel_user_account_creation">Cancel Account Creation</button>
+
+
+<div class="hide_show_create_account_information" id="show_create_account">
+
+
+
   <!-- Start -->
   <tr>
 	 <td>
-	  <div class="hide_show_create_account_information" id="show_create_account">
 		<table id="userInformationTabe">
     <tr>
 		<td>
@@ -358,11 +373,13 @@ $("#cancel_user_login").click(function() {
   <!-- End -->
 
 	</table>
-	</div>
 	</td>
   </tr>
 <!-- End -->
-<input type="submit" value="Submit User Info" id="user_account_creation">
+<input type="submit" value="Submit New User Account Info" id="user_account_creation">
+</div>
+
+
 
 
 
