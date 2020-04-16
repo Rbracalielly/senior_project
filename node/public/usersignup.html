@@ -144,8 +144,8 @@ $("#cancel_user_login").click(function() {
   </body>
 
   <picture>
-    <source media="(min-width: 100px)" srcset="Fitness Picture 1.jpg">
-    <img src="Fitness Picture 1.jpg" style="width:600px;height:400px">
+    <source media="(min-width: 100px)" srcset="fitnesspicture1.jpg">
+    <img src="fitnesspicture1.jpg" style="width:600px;height:400px">
   </picture>
 
 <!-- Adding Space for Avatar to line up -->
@@ -286,21 +286,12 @@ $("#cancel_user_login").click(function() {
 
   <!-- Start -->
 
-
   <tr>
     <td>
-      <label>Gender:</label><br>
-      <input type="radio" id="user_information_10" name="gender" value="M">
-    	<label for="male">Male</label><br>
-    	<input type="radio" id="user_information_10" name="gender" value="F">
-    	<label for="female">Female</label><br>
-    	<input type="radio" id="user_information_10" name="gender" value="O">
-    	<label for="other">Other</label><br><br>
+    <label for="confirm"><b>Gender (Example: M, F or O)</b></label>
+    <input type="text" placeholder="Enter Gender" name="gender" maxlength="1" id = "user_information_10" required>
     </td>
   </tr>
-
-
-
   <!-- End -->
 
   <!-- Start -->
