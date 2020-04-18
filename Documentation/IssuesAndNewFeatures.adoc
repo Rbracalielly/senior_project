@@ -1,7 +1,7 @@
 # Issues Doc
 
 ## What is this document?
-This is a living document where members of the team can add in known issues to the application as well as document new futures that can be added.
+This is a living document where members of the team can add in known issues to the application as well as document new futures that can be added. {nbsp} +
 
 ## Current issues {nbsp} +
 1.)	Sign page shows a lot of information at once {nbsp} +
@@ -15,16 +15,19 @@ This is a living document where members of the team can add in known issues to t
 - Ryan Bracalielly chagne the various queries to that insert datat to use the NOW() function to add in a date time for when data is added. This would be an issue for user in different time zones but that will take to code. {nbsp} +
 4.)	Remove java scripts {nbsp} +
 - We should remove the java alerts and code in proper error codes for an end user to see. Make sure proper error codes do not have tables reference names. {nbsp} +
+- We can put these alerts in the console but we should find a way to have proper error codes for users. {nbsp} +
 5.)	Definitions {nbsp} +
 - Better definitions on calorie limit and goals. {nbsp} +
 - Hydration pages table is confusing and could be redefined. {nbsp} +
 6.)	Adding in meals and drinks {nbsp} +
 - Forum should clear after adding in calories {nbsp} +
+- Ryan Bracaleilly add location.reload(); code to clear page {nbsp} +
 7.)	Gender value always passing male {nbsp} +
  - Work around idea was to use a free box that states something like “Gender (Please Enter M, F, or O)” {nbsp} +
   - Work around complete. {nbsp} +
 8.)	Images not showing  {nbsp} +
  - Need proper file references in jail. {nbsp} +
+ - Connor advised were the images need to placed, Ryan ensured they are now in the master branch {nbsp} +
 
 ## Features to add {nbsp} +
 1.)	Security {nbsp} +
@@ -46,4 +49,4 @@ This is a living document where members of the team can add in known issues to t
 - Ryan Bracalielly created version 1.0 4/13/2020 at 10:00 PM EST {nbsp} +
 - Eric Roland updated Current Issue 7 4/14/2020 {nbsp} +
 - Ryan Bracalielly updated Current Issue 1 and 2 4/15/2020 {nbsp} +
-
+- Ryan Bracalielly updated Current Issue 6 and 8 4/17/2020 {nbsp} +
