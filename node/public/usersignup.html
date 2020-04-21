@@ -12,12 +12,12 @@
   $(document).ready(function() {
     $("#signin_user_login").click(function() {
 
-      var email = document.getElementById("userEmail").value;
+      var userName = document.getElementById("userName").value;
       var password = document.getElementById("userPassword").value;
       //debugging
       console.log("test: " + password);
       doLogin({ // this is the input (first argument of doLogin)
-        email: email,
+        userName: userName,
         password: password
       }, function(err) { // this is the callback (second argument of doLogin)
         // this function gets called after the ajax request completes
@@ -116,7 +116,7 @@ function addUserCreationInfo(userCreationInfo, callback) {
 $(document).ready(function() {
 var Target = document.getElementById('show_create_account');
 
-$("#user_account_creation").click(function() {
+$("#click_account_creation").click(function() {
   Target.style.display = 'block';
 });
 
@@ -125,14 +125,19 @@ $("#cancel_user_account_creation").click(function() {
 });
 
 
-$("#cancel_user_login").click(function() {
-  history.go(-1);
-});
-
 });
 
 
 </script>
+
+<style>
+
+.hide_show_create_account_information {
+  display: none;
+}
+
+</style>
+
 
 
 <body>
@@ -164,8 +169,8 @@ $("#cancel_user_login").click(function() {
 		<h1 class="h3 mb-3 font-weight-normal">Account Login</h1>
 
     <!-- Enter User Email -->
-		<label for="user_email" class="sr-only">Email address</label>
-		<input type="email" id="userEmail" class="form-control" placeholder="Email address" required autofocus>
+		<label for="user_name" class="sr-only">User Name</label>
+		<input type="text" id="userName" class="form-control" placeholder="User Name" required autofocus>
     <br>
 
     <!-- Enter User Password -->
@@ -190,10 +195,20 @@ $("#cancel_user_login").click(function() {
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
 
+<br>
+<br>
+
+<button id="click_account_creation">Create A New Account</button>
+<button id="cancel_user_account_creation">Cancel Account Creation</button>
+
+
+<div class="hide_show_create_account_information" id="show_create_account">
+
+
+
   <!-- Start -->
   <tr>
 	 <td>
-	  <div class="hide_show_create_account_information" id="show_create_account">
 		<table id="userInformationTabe">
     <tr>
 		<td>
@@ -358,11 +373,13 @@ $("#cancel_user_login").click(function() {
   <!-- End -->
 
 	</table>
-	</div>
 	</td>
   </tr>
 <!-- End -->
-<input type="submit" value="Submit User Info" id="user_account_creation">
+<input type="submit" value="Submit New User Account Info" id="user_account_creation">
+</div>
+
+
 
 
 

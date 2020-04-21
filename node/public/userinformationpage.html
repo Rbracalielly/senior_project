@@ -31,8 +31,12 @@
           // this function gets called after the ajax request completes
           if (err) {
             alert("Adding calories failed: " + err);
+            //reload page to clear
+            location.reload();
           } else {
             alert("Added calories!");
+            //reload page to clear
+            location.reload();
             // ... and navigate to other page
             //not sure where to nav to here?
             //id assume the best place would be the user information page again
@@ -87,8 +91,10 @@
           // this function gets called after the ajax request completes
           if (err) {
             alert("Adding ounces failed: " + err);
+            location.reload();
           } else {
             alert("Added ounces!");
+            location.reload();
             // ... and navigate to other page
             //not sure where to nav to here?
             //id assume the best place would be the user information page again
@@ -252,6 +258,7 @@
 
 
     <!--Caloric Intake Table-->
+    <div id = "meal_table">
     <table width="300px" border="1">
       <tr>
         <td width="40px">Meal 1</td>
@@ -330,6 +337,7 @@
       </tr>
     </table>
     <input type="submit" value="Submit User Caloric Intake" id="user_submit_calorie_button">
+  </div>
 
 
     <!--Button to submit Caloric Intak-->
