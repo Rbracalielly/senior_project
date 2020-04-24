@@ -105,9 +105,9 @@ button:hover{
       }, function(err) { // this is the callback (second argument of doLogin)
         // this function gets called after the ajax request completes
         if (err) {
-          alert("Login failed: " + err);
+          document.getElementById("loginError").innerHTML = (err);
         } else {
-          alert("Login success!");
+          console.log("Login success!");
           // ... and navigate to other page
 
           location = "/userinformationpage.html"
@@ -158,10 +158,10 @@ $("#user_account_creation").click(function() {
   }, function(err) { // this is the callback (second argument of userCreationInfo)
     // this function gets called after the ajax request completes
     if (err) {
-      alert("Adding user failed: " + err);
+      document.getElementById("createUserError").innerHTML = (err);
     }
     else {
-      alert("Added user!");
+      console.log("Added user!");
       // ... and navigate to other page
 			//not sure where to nav to here?
 			//id assume the best place would be the user information page again
@@ -277,7 +277,7 @@ $("#cancel_user_account_creation").click(function() {
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
-
+<p id="loginError"></p>
 <br>
 <br>
 
@@ -462,7 +462,7 @@ $("#cancel_user_account_creation").click(function() {
 <input type="submit" value="Submit New User Account Info" id="user_account_creation">
 </div>
 
-
+<p id="createUserError"></p>
 
 
 

@@ -4,12 +4,16 @@ var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
 
+
 http.createServer(function(req, res) {
   try {
     var path = req.url.replace(/\/?(?:\?.*)?$/, "").toLowerCase();
     if (path === "/users") {
       users(req, res);
     }
+		else if (path === "/user_login") {
+      userLogin(req, res);
+		}
     else if (path === "/userinformation") {
       userinformation(req, res);
     }
@@ -21,6 +25,15 @@ http.createServer(function(req, res) {
     }
     else if (path === "/add_meal") {
       addMeal(req, res);
+    }
+    else if (path === "/add_drink") {
+      addDrink(req, res);
+    }
+    else if (path === "/add_new_user") {
+      addNewUser(req, res);
+    }
+    else if (path === "/user_report") {
+      userReport(req, res);
     }
     else {
       serveStaticFile(res, path);
@@ -78,6 +91,62 @@ function sendResponse(req, res, data) {
   res.writeHead(200, {"Content-Type": "application/json; charset=utf-8"});
   res.end(JSON.stringify(data));
 }
+
+function userLogin(req, res) {
+  var body = "";
+  req.on("data", function(data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      // query the database
+			console.log(injson);
+      conn.query("SELECT * FROM userInformation WHERE userEmail = ? AND userPassword = ?", [injson.userEmail, injson.userPassword], function(err, rows, fields) { // build json result object
+				if (err) {
+	console.log(err);
+}
+				var outjson = {};
+				if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+        if (rows.length > 0) {
+          //debugging
+          console.log("Test:" + results);
+          //end debugging
+          console.log("Login success!");
+          // ... and navigate to other page
+
+          location = "/userinformationpage.html"
+        } else {
+          console.log("Login failed " + err);
+        }
+      }
+      // return json object that contains the result of the query
+      sendResponse(req, res);
+    })
+    conn.end();
+
+  });
+});
+}
+
+
+
 
 function users(req, res) {
   var conn = mysql.createConnection(credentials.connection);
@@ -266,9 +335,8 @@ function addDrink(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO userDailyHydrationLevels"(userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription
-VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], function(err, rows, fields) {
-        var.outjson = {};
+      conn.query("INSERT INTO userDailyCalorieIntake (userID,userMealMealOrDrinkCalories,userMealOrDrinkDescription) VALUE (?,?,?)",[1,injson.water[0].calories, injson.water[0].description], function(err, rows, fields) {
+        var outjson = {};
         if (err) {
           outjson.success = false;
           outjson.message = "Query failed: " + err;
@@ -284,5 +352,82 @@ VALUE (?,?,?)",[1,injson.drink[0].calories, injson.drinks[0].description], funct
   });
 }
 
+function addNewUser(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      // query the database
+      console.log(injson);
+      conn.query("INSERT INTO userInformation (userName,userEmail,userPassword,userSecretQuestion,userAnswer,userStreetAddress,userCity,userState,userZip,userDateOfBirth,userGender,userBMI,userWeight,userHeight,userExerciseLevel,userCalorieLimit,userCalorieGoal) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [injson.userCreationInfo[0], injson.userCreationInfo[1], injson.userCreationInfo[2], injson.userCreationInfo[3], injson.userCreationInfo[4], injson.userCreationInfo[5], injson.userCreationInfo[6], injson.userCreationInfo[7], injson.userCreationInfo[8], injson.userCreationInfo[9], injson.userCreationInfo[10], injson.userCreationInfo[11], injson.userCreationInfo[12], injson.userCreationInfo[13], injson.userCreationInfo[14], injson.userCreationInfo[15], injson.userCreationInfo[16]], function(err, rows, fields) {        // build json result object
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          // query successful
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
+
+function userReport(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    if (body.length > 1e6) {
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function() {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      console.log(injson);
+      conn.query("select userMealMealOrDrinkCalories as 'Calories', userMealOrDrinkDescription as 'Description', userMealOrDrinkEntryDate as 'Date' from userDailyCalorieIntake where (userID = ?) and (userMealOrDrinkEntryDate BETWEEN ? and ?) order by userMealMealOrDrinkCalories desc", [1,injson.userReport[0], injson.userReport[1]], function(err, rows, fields) {
+        var outjson = {};
+        if (err) {
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+          console.log(outjson.data);
+        }
+        else {
+          outjson.success = true;
+          outjson.message = "Query successful!";
+          outjson.data = rows;
+          console.log(outjson.data);
+        }
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
 
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
