@@ -43,6 +43,8 @@ This is a living document where members of the team can add in known issues to t
 5.)	Account creation {nbsp} +
 - Auto sign in after account created {nbsp} +
 - Password verification field {nbsp} +
+6.) Add re-direct feature to homepage {nbsp} +
+- Added by Connor 4/23/20 {nbsp} +
 
 
 ## Document History
