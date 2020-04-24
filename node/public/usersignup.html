@@ -105,9 +105,9 @@ button:hover{
       }, function(err) { // this is the callback (second argument of doLogin)
         // this function gets called after the ajax request completes
         if (err) {
-          alert("Login failed: " + err);
+          document.getElementById("loginError").innerHTML = (err);
         } else {
-          alert("Login success!");
+          console.log("Login success!");
           // ... and navigate to other page
 
           location = "/userinformationpage.html"
@@ -277,7 +277,7 @@ $("#cancel_user_account_creation").click(function() {
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
   <!-------------------------------------------------------------------------------------------------------------------->
-
+<p id="loginError"></p>
 <br>
 <br>
 
